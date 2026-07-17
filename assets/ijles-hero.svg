@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Academic journal hero background</title>
+  <desc id="desc">A calm academic scene with books, a globe, and network lines in ivory, navy, teal, and gold.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbfaf7"/>
+      <stop offset="0.55" stop-color="#f3eee4"/>
+      <stop offset="1" stop-color="#dfe8e8"/>
+    </linearGradient>
+    <radialGradient id="globe" cx="50%" cy="45%" r="55%">
+      <stop offset="0" stop-color="#2f7180"/>
+      <stop offset="1" stop-color="#0b2d45"/>
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <g opacity=".22" fill="none" stroke="#0b2d45" stroke-width="3">
+    <path d="M470 170 C700 40 1030 30 1320 160"/>
+    <path d="M520 270 C780 120 1080 160 1420 310"/>
+    <path d="M620 370 C860 260 1110 280 1500 450"/>
+    <path d="M780 110 C830 300 850 470 820 640"/>
+    <path d="M1020 80 C980 270 980 430 1050 640"/>
+  </g>
+  <g opacity=".62">
+    <circle cx="620" cy="238" r="14" fill="#b57a28"/>
+    <circle cx="860" cy="176" r="18" fill="#236d73"/>
+    <circle cx="1048" cy="268" r="12" fill="#0b2d45"/>
+    <circle cx="1180" cy="196" r="20" fill="#b57a28"/>
+    <circle cx="1340" cy="328" r="16" fill="#236d73"/>
+    <circle cx="760" cy="410" r="13" fill="#236d73"/>
+  </g>
+  <g transform="translate(1080 120)">
+    <circle cx="190" cy="190" r="155" fill="url(#globe)"/>
+    <circle cx="190" cy="190" r="155" fill="none" stroke="#c9a353" stroke-width="12"/>
+    <g fill="none" stroke="#d7c7a8" stroke-width="4" opacity=".75">
+      <ellipse cx="190" cy="190" rx="112" ry="155"/>
+      <ellipse cx="190" cy="190" rx="54" ry="155"/>
+      <path d="M38 190h304M58 120h264M58 260h264"/>
+    </g>
+    <path d="M96 174c42-34 75-50 116-38 20 6 32 28 63 25 24-2 36-16 54-16-24 38-59 73-104 86-41 12-82 4-129-57Z" fill="#d7c7a8" opacity=".78"/>
+    <path d="M302 300c44 42 62 88 42 136" fill="none" stroke="#b57a28" stroke-width="13" stroke-linecap="round"/>
+    <path d="M190 346v70" stroke="#b57a28" stroke-width="10" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(520 520) rotate(-5)">
+    <path d="M0 80c210-54 424-54 642 0v170c-214-48-428-48-642 0V80Z" fill="#fff8ed" stroke="#d7c7a8" stroke-width="5"/>
+    <path d="M321 78v168" stroke="#d7c7a8" stroke-width="5"/>
+    <g stroke="#b7a98f" stroke-width="2" opacity=".45">
+      <path d="M38 116c72-14 152-14 244 0M38 144c72-14 152-14 244 0M38 172c72-14 152-14 244 0"/>
+      <path d="M360 116c72-14 152-14 244 0M360 144c72-14 152-14 244 0M360 172c72-14 152-14 244 0"/>
+    </g>
+  </g>
+  <g transform="translate(190 615) rotate(-8)">
+    <rect x="0" y="0" width="340" height="48" rx="5" fill="#0b2d45"/>
+    <rect x="28" y="-36" width="340" height="48" rx="5" fill="#e3d1ad"/>
+    <rect x="58" y="-72" width="340" height="48" rx="5" fill="#fff8ed" stroke="#d7c7a8"/>
+  </g>
+  <g transform="translate(142 730) rotate(-7)">
+    <rect width="460" height="92" rx="8" fill="#fffaf0" stroke="#d7c7a8"/>
+    <path d="M26 30c86-14 170-14 252 0M26 55c116-17 228-17 336 0" stroke="#b7a98f" stroke-width="3" opacity=".55"/>
+    <rect x="226" y="-18" width="166" height="16" rx="8" fill="#0b2d45"/>
+    <circle cx="218" cy="-10" r="12" fill="#b57a28"/>
+  </g>
+</svg>
