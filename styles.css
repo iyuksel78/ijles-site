@@ -33,6 +33,13 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
 .container {
   width: min(1160px, calc(100% - 40px));
   margin: 0 auto;
@@ -371,6 +378,87 @@ h3 {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--white);
+}
+
+.info-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.info-grid.six {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.info-grid article {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(16, 40, 68, .05);
+}
+
+.info-grid h2 {
+  margin: 10px 0 8px;
+  font-family: Inter, sans-serif;
+  font-size: 18px;
+}
+
+.info-grid p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.icon-dot {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, var(--teal) 0 35%, transparent 36%), #e6f2f2;
+  border: 1px solid rgba(35, 109, 115, .22);
+}
+
+.compact-split {
+  align-items: start;
+}
+
+.two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 22px;
+}
+
+.check-list {
+  columns: 2;
+  margin: 18px 0 0;
+  padding-left: 21px;
+  color: #405061;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.check-list li {
+  break-inside: avoid;
+  margin: 6px 0;
+}
+
+.status-list {
+  display: grid;
+  gap: 8px;
+  margin: 18px 0 22px;
+}
+
+.status-list span {
+  padding: 10px 12px;
+  border-left: 3px solid var(--teal);
+  background: #f8faf9;
+  color: #405061;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.compact-actions {
+  margin-top: 20px;
 }
 
 .home-card {
@@ -1214,7 +1302,7 @@ details p {
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
+  grid-template-columns: 1.35fr repeat(4, 1fr);
   gap: 34px;
 }
 
@@ -1292,6 +1380,8 @@ details p {
   .people-grid,
   .people-grid.expanded,
   .home-grid,
+  .info-grid.six,
+  .two-column,
   .contact-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1353,10 +1443,17 @@ details p {
   .people-grid,
   .people-grid.expanded,
   .home-grid,
+  .info-grid.six,
+  .two-column,
   .contact-grid,
   .submission-grid,
   .index-grid {
     grid-template-columns: 1fr;
+  }
+
+  .check-list,
+  .checklist-columns {
+    columns: 1;
   }
 
   .submission-callout {
