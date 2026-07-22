@@ -1,8 +1,9 @@
 const IJLES_CONFIG = {
   notificationEmail: "ijlescontact@gmail.com",
   rootFolderName: "IJLES Editorial Office",
-  authorSubmissionsFolderName: "Author Submissions",
-  reviewerReportsFolderName: "Reviewer Reports",
+  logsFolderName: "00 Logs",
+  authorSubmissionsFolderName: "01 Author Submissions",
+  reviewerReportsFolderName: "02 Reviewer Reports",
   authorSubmissionLogName: "IJLES Submission Log",
   reviewerReportLogName: "IJLES Reviewer Report Log"
 };
@@ -28,6 +29,7 @@ function doGet() {
       rootFolderUrl: workspace.rootFolder.getUrl(),
       authorFolderUrl: workspace.authorFolder.getUrl(),
       reviewerFolderUrl: workspace.reviewerFolder.getUrl(),
+      logsFolderUrl: workspace.logsFolder.getUrl(),
       authorLogUrl: SpreadsheetApp.openById(workspace.authorSheetId).getUrl(),
       reviewerLogUrl: SpreadsheetApp.openById(workspace.reviewerSheetId).getUrl()
     };
@@ -37,8 +39,9 @@ function doGet() {
       "<p>The Google Drive workspace has been created or verified for this account.</p>",
       "<ul>",
       `<li><a href="${data.rootFolderUrl}" target="_blank">IJLES Editorial Office</a></li>`,
-      `<li><a href="${data.authorFolderUrl}" target="_blank">Author Submissions</a></li>`,
-      `<li><a href="${data.reviewerFolderUrl}" target="_blank">Reviewer Reports</a></li>`,
+      `<li><a href="${data.logsFolderUrl}" target="_blank">00 Logs</a></li>`,
+      `<li><a href="${data.authorFolderUrl}" target="_blank">01 Author Submissions</a></li>`,
+      `<li><a href="${data.reviewerFolderUrl}" target="_blank">02 Reviewer Reports</a></li>`,
       `<li><a href="${data.authorLogUrl}" target="_blank">IJLES Submission Log</a></li>`,
       `<li><a href="${data.reviewerLogUrl}" target="_blank">IJLES Reviewer Report Log</a></li>`,
       "</ul>"
@@ -52,7 +55,8 @@ function saveAuthorSubmission_(payload) {
   const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("IJLES");
   const folderName = cleanName_(`${submissionId} - ${payload.manuscriptTitle || "Untitled Manuscript"}`);
-  const folder = workspace.authorFolder.createFolder(folderName);
+  const yearFolder = getOrCreateChildFolder_(workspace.authorFolder, currentYear_());
+  const folder = yearFolder.createFolder(folderName);
   const file = saveUploadedFile_(folder, payload.file);
 
   const row = [
@@ -98,7 +102,8 @@ function saveReviewerEvaluation_(payload) {
   const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("REV");
   const folderName = cleanName_(`${submissionId} - ${payload.manuscriptTitle || payload.manuscriptNumber || "Reviewer Report"}`);
-  const folder = workspace.reviewerFolder.createFolder(folderName);
+  const yearFolder = getOrCreateChildFolder_(workspace.reviewerFolder, currentYear_());
+  const folder = yearFolder.createFolder(folderName);
   const file = saveUploadedFile_(folder, payload.file);
   const reportFile = folder.createFile(
     `${submissionId}-review-report.txt`,
@@ -141,6 +146,7 @@ function saveReviewerEvaluation_(payload) {
 function getWorkspace_() {
   const props = PropertiesService.getScriptProperties();
   const rootFolder = getOrCreateFolder_(IJLES_CONFIG.rootFolderName);
+  const logsFolder = getOrCreateChildFolder_(rootFolder, IJLES_CONFIG.logsFolderName);
   const authorFolder = getOrCreateChildFolder_(rootFolder, IJLES_CONFIG.authorSubmissionsFolderName);
   const reviewerFolder = getOrCreateChildFolder_(rootFolder, IJLES_CONFIG.reviewerReportsFolderName);
 
@@ -163,7 +169,7 @@ function getWorkspace_() {
       "File URL",
       "Folder URL"
     ],
-    rootFolder
+    logsFolder
   );
 
   const reviewerSheetId = getOrCreateSpreadsheet_(
@@ -179,14 +185,15 @@ function getWorkspace_() {
       "File URL",
       "Folder URL"
     ],
-    rootFolder
+    logsFolder
   );
 
   props.setProperty("ROOT_FOLDER_ID", rootFolder.getId());
+  props.setProperty("LOGS_FOLDER_ID", logsFolder.getId());
   props.setProperty("AUTHOR_SUBMISSIONS_FOLDER_ID", authorFolder.getId());
   props.setProperty("REVIEWER_REPORTS_FOLDER_ID", reviewerFolder.getId());
 
-  return { rootFolder, authorFolder, reviewerFolder, authorSheetId, reviewerSheetId };
+  return { rootFolder, logsFolder, authorFolder, reviewerFolder, authorSheetId, reviewerSheetId };
 }
 
 function getOrCreateFolder_(name) {
@@ -214,6 +221,7 @@ function getOrCreateSpreadsheet_(propertyName, fileName, headers, parentFolder) 
   const files = DriveApp.getFilesByName(fileName);
   if (files.hasNext()) {
     const file = files.next();
+    parentFolder.addFile(file);
     props.setProperty(propertyName, file.getId());
     ensureSheetHeaders_(file.getId(), headers);
     return file.getId();
@@ -264,6 +272,10 @@ function makeSubmissionId_(prefix) {
   const timeZone = Session.getScriptTimeZone();
   const stamp = Utilities.formatDate(new Date(), timeZone, "yyyyMMdd-HHmmss");
   return `${prefix}-${stamp}`;
+}
+
+function currentYear_() {
+  return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy");
 }
 
 function cleanName_(value) {

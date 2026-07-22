@@ -7,10 +7,15 @@ Bu klasördeki `IJLES_Submission_Web_App.gs` dosyası, IJLES web sitesindeki yaz
 Script ilk başarılı gönderimde aşağıdaki yapıyı otomatik oluşturur. Bu dosyalar, Apps Script projesini hangi Google hesabında deploy ettiysen o hesabın Drive alanında görünür.
 
 - Ana klasör: `IJLES Editorial Office`
-- Yazar başvuruları klasörü: `Author Submissions`
-- Hakem raporları klasörü: `Reviewer Reports`
-- Yazar başvuru kayıtları Sheet: `IJLES Submission Log`
-- Hakem raporu kayıtları Sheet: `IJLES Reviewer Report Log`
+  - `00 Logs`
+    - `IJLES Submission Log`
+    - `IJLES Reviewer Report Log`
+  - `01 Author Submissions`
+    - `2026`
+      - `IJLES-YYYYMMDD-HHMMSS - Manuscript Title`
+  - `02 Reviewer Reports`
+    - `2026`
+      - `REV-YYYYMMDD-HHMMSS - Manuscript Title`
 
 ## Kurulum Adımları
 
@@ -32,10 +37,10 @@ Script ilk başarılı gönderimde aşağıdaki yapıyı otomatik oluşturur. Bu
 
 ## Çalışma Mantığı
 
-- Yazar `Submit Manuscript` formunu doldurunca dosya `Author Submissions` klasörüne kaydedilir.
+- Yazar `Submit Manuscript` formunu doldurunca dosya `01 Author Submissions / yıl / başvuru klasörü` içine kaydedilir.
 - Başvuru bilgileri `IJLES Submission Log` Sheet dosyasına satır olarak yazılır.
 - `ijlescontact@gmail.com` adresine başvuru bildirimi gönderilir.
-- Hakem formu doldurulunca dosya ve metin raporu `Reviewer Reports` klasörüne kaydedilir.
+- Hakem formu doldurulunca dosya ve metin raporu `02 Reviewer Reports / yıl / rapor klasörü` içine kaydedilir.
 - Hakem kayıtları `IJLES Reviewer Report Log` Sheet dosyasına yazılır.
 - Hakem bildirimi de `ijlescontact@gmail.com` adresine gönderilir.
 

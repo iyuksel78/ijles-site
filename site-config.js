@@ -12,8 +12,9 @@ window.IJLES_CONFIG = {
   googleAppsScriptEndpoint: "https://script.google.com/macros/s/AKfycbzWxHs32p8iDMiZZuca999zMmWqWQ14ZMzwRM4zGrvfzgwfeJyGad2S4zgdLC6nWn3h/exec",
   googleDrive: {
     editorialFolderName: "IJLES Editorial Office",
-    authorSubmissionsFolderName: "Author Submissions",
-    reviewerReportsFolderName: "Reviewer Reports",
+    logsFolderName: "00 Logs",
+    authorSubmissionsFolderName: "01 Author Submissions",
+    reviewerReportsFolderName: "02 Reviewer Reports",
     authorSubmissionLogSheetName: "IJLES Submission Log",
     reviewerReportLogSheetName: "IJLES Reviewer Report Log",
     notificationEmail: "ijlescontact@gmail.com"
