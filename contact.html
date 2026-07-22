@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Submit a Manuscript | IJLES</title>
-    <meta name="description" content="Submit a manuscript to IJLES by email. Review the submission checklist, required files, editorial screening, peer review, and ethics notes.">
+    <meta name="description" content="Submit a manuscript to IJLES through the online submission form. Review the submission checklist, required files, editorial screening, peer review, and ethics notes.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://ijles.org/contact.html">
     <meta property="og:title" content="Submit a Manuscript | IJLES">
-    <meta property="og:description" content="IJLES currently accepts manuscript submissions by email at ijlescontact@gmail.com.">
+    <meta property="og:description" content="IJLES accepts manuscript submissions through the online submission form.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://ijles.org/contact.html">
     <meta name="twitter:card" content="summary">
@@ -21,9 +21,46 @@
     <header class="site-header"><div class="topline"><div class="container topbar"><span>Peer-reviewed open-access journal</span><span>Language &bull; Education &bull; Society</span><a href="mailto:ijlescontact@gmail.com">ijlescontact@gmail.com</a></div></div><nav class="container nav" aria-label="Primary navigation"><a class="brand" href="index.html"><img class="brand-logo" src="assets/ijles-emblem.svg" alt="" width="46" height="46"><span><strong>IJLES</strong><small>International Journal of Language, Education and Society</small></span></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button><div class="menu" id="site-menu"><a href="index.html">Home</a><a href="about.html">About</a><a href="aims-scope.html">Aims &amp; Scope</a><a href="editorial.html">Editorial</a><a href="authors.html">For Authors</a><a href="policies.html">Policies</a><a href="call-for-papers.html">Call for Papers</a><a class="nav-action active" href="contact.html">Submit</a></div></nav></header>
 
     <main>
-      <section class="page-header"><div class="container"><p class="section-kicker">Submit a Manuscript</p><h1>Email Submission Guidelines</h1><p>IJLES currently accepts manuscript submissions by email. Please review the checklist and attach all required files before submitting.</p></div></section>
-      <section class="section"><div class="container content-layout"><aside class="toc"><a href="#checklist">Submission Checklist</a><a href="#files">Required Files</a><a href="#email">Email Submission</a><a href="#timeline">Review Timeline</a><a href="#ethics">Ethics Note</a></aside>
+      <section class="page-header"><div class="container"><p class="section-kicker">Submit a Manuscript</p><h1>Online Submission</h1><p>Please review the checklist and upload the required manuscript file before submitting.</p></div></section>
+      <section class="section"><div class="container content-layout"><aside class="toc"><a href="#submit-form">Submit Form</a><a href="#checklist">Submission Checklist</a><a href="#files">Required Files</a><a href="#timeline">Review Timeline</a><a href="#ethics">Ethics Note</a></aside>
         <div class="content-card submission-page">
+          <h2 id="submit-form">Submit Manuscript</h2>
+          <form class="submission-form" id="author-submission-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="access_key" value="8df6df37-933e-405f-9120-bb059b85d7fa">
+            <input type="hidden" name="subject" value="IJLES Manuscript Submission">
+            <input type="hidden" name="from_name" value="IJLES Author Submission">
+            <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
+            <div class="form-grid">
+              <div class="form-row wide"><label for="submission-title">Manuscript Title</label><input id="submission-title" name="Manuscript Title" required></div>
+              <div class="form-row"><label for="corresponding-author">Corresponding Author</label><input id="corresponding-author" name="Corresponding Author" required></div>
+              <div class="form-row"><label for="author-email">Author Email</label><input id="author-email" name="Author Email" type="email" required></div>
+              <div class="form-row"><label for="author-affiliation">Affiliation <span class="optional-label">optional</span></label><input id="author-affiliation" name="Affiliation"></div>
+              <div class="form-row">
+                <label for="article-type">Article Type</label>
+                <select id="article-type" name="Article Type" required>
+                  <option value="">Select article type...</option>
+                  <option>Original research article</option>
+                  <option>Review article</option>
+                  <option>Book review</option>
+                  <option>Opinion essay</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="form-row wide"><label for="submission-note">Author Note <span class="optional-label">optional</span></label><textarea id="submission-note" name="Author Note" rows="4" placeholder="Brief message to the editorial office..."></textarea></div>
+              <div class="form-row wide"><label for="submission-file">Submission File</label><input id="submission-file" name="attachment" type="file" accept=".doc,.docx,.pdf,.zip" required><small>Upload one DOC, DOCX, PDF, or ZIP file. If your files are large or multiple, send them by email after submitting this form.</small></div>
+            </div>
+            <div class="submission-declarations">
+              <label><input type="checkbox" name="Originality Declaration" value="Confirmed" required> The manuscript is original and is not under review elsewhere.</label>
+              <label><input type="checkbox" name="Ethics Declaration" value="Confirmed" required> Ethics approval, consent, funding, conflict of interest, AI use, and data availability statements are included where applicable.</label>
+              <label><input type="checkbox" name="Correspondence Consent" value="Confirmed" required> I agree that IJLES may contact the corresponding author about this submission.</label>
+            </div>
+            <div class="form-actions">
+              <button class="button primary" type="submit">Submit Manuscript</button>
+              <a class="button secondary" href="mailto:ijlescontact@gmail.com?subject=Manuscript%20Submission%20-%20Author%20Surname%20-%20Short%20Title">Email Backup</a>
+            </div>
+            <p class="form-note" id="author-submit-status" role="status">After pressing submit, the manuscript information and file will be sent to IJLES through Web3Forms.</p>
+          </form>
+
           <h2 id="checklist">Submission Checklist</h2>
           <ul class="classic-list">
             <li>The manuscript is within the journal's scope.</li>
@@ -35,8 +72,8 @@
             <li>The manuscript is prepared for anonymous review.</li>
             <li>Ethics approval, informed consent, funding, conflicts of interest, AI use, and data availability are reported where applicable.</li>
             <li>Tables and figures are cited in the text, and references are complete and accurate.</li>
-            <li>All required files are attached.</li>
-            <li>The email subject follows the requested format.</li>
+            <li>All required files are uploaded or prepared as a single submission package.</li>
+            <li>The online submission form is completed and all required declarations are confirmed.</li>
           </ul>
 
           <h2 id="files">Required Files</h2>
@@ -47,17 +84,9 @@
             <article><h3>Supplementary Files</h3><p>Tables, figures, appendices, instruments, datasets, or similarity report if available.</p></article>
           </div>
 
-          <h2 id="email">Email Submission</h2>
-          <p>Please send all submission files as email attachments to the editorial office. Use the following subject format:</p>
-          <p><code>Manuscript Submission - Author Surname - Short Title</code></p>
-          <div class="submission-callout">
-            <div><strong>Submission email</strong><span>ijlescontact@gmail.com</span></div>
-            <a class="button primary" href="mailto:ijlescontact@gmail.com?subject=Manuscript%20Submission%20-%20Author%20Surname%20-%20Short%20Title">Email Submission</a>
-          </div>
-
           <h2 id="timeline">Review Timeline</h2>
           <ol class="timeline-list">
-            <li><strong>Email acknowledgement:</strong> acknowledgement confirms receipt only; it does not indicate acceptance.</li>
+            <li><strong>Submission acknowledgement:</strong> acknowledgement confirms receipt only; it does not indicate acceptance.</li>
             <li><strong>Initial editorial screening:</strong> scope, formatting, completeness, and ethics check.</li>
             <li><strong>Peer review assignment:</strong> suitable manuscripts are sent to three independent external reviewers.</li>
             <li><strong>Blind external peer review:</strong> reviewers evaluate originality, relevance, methodological rigor, evidence, clarity, and ethical compliance.</li>
@@ -75,5 +104,39 @@
     <footer class="footer"><div class="container copyright">&copy; <span data-current-year></span> International Journal of Language, Education and Society. All rights reserved.</div></footer>
     <script src="site-config.js"></script>
     <script src="script.js"></script>
+    <script>
+      (() => {
+        const form = document.querySelector("#author-submission-form");
+        const status = document.querySelector("#author-submit-status");
+        if (!form || !status) return;
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          status.textContent = "Submitting manuscript...";
+          const submitButton = form.querySelector('button[type="submit"]');
+          submitButton.disabled = true;
+
+          fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" }
+          })
+            .then(async (response) => {
+              const result = await response.json().catch(() => ({}));
+              if (!response.ok || result.success === false) {
+                throw new Error(result.message || "Submission failed.");
+              }
+              status.textContent = "Thank you. Your manuscript submission has been sent to IJLES.";
+              form.reset();
+            })
+            .catch((error) => {
+              status.textContent = `Submission could not be completed: ${error.message} Please use the Email Backup button.`;
+            })
+            .finally(() => {
+              submitButton.disabled = false;
+            });
+        });
+      })();
+    </script>
   </body>
 </html>
