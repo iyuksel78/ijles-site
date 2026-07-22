@@ -51,10 +51,7 @@
       </section>
 
       <section class="section reviewer-form-section is-hidden" id="review-form-panel">
-        <form class="container reviewer-form content-card" id="reviewer-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-          <input type="hidden" name="access_key" value="8df6df37-933e-405f-9120-bb059b85d7fa">
-          <input type="hidden" name="subject" value="IJLES Reviewer Evaluation">
-          <input type="hidden" name="from_name" value="IJLES Reviewer Portal">
+        <form class="container reviewer-form content-card" id="reviewer-form" action="#" method="POST" enctype="multipart/form-data">
           <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
           <section class="reviewer-section reviewer-section-info">
             <h2>1. Manuscript Information</h2>
@@ -104,7 +101,7 @@
             <button class="button secondary" type="button" id="download-review">Download Draft Report</button>
             <button class="button quiet" type="reset">Clear Form</button>
           </div>
-          <p class="form-note" id="submit-status" role="status">After pressing submit, the report will be sent directly to IJLES through Web3Forms.</p>
+          <p class="form-note" id="submit-status" role="status">After pressing submit, the report will be sent directly to the IJLES editorial office.</p>
         </form>
       </section>
     </main>
@@ -162,6 +159,16 @@
           return lines.join("\\n");
         };
 
+        const readFileAsBase64 = (file) => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = String(reader.result || "");
+            resolve(result.includes(",") ? result.split(",").pop() : result);
+          };
+          reader.onerror = () => reject(reader.error || new Error("File could not be read."));
+          reader.readAsDataURL(file);
+        });
+
         const downloadReport = () => {
           const report = buildReport();
           const manuscript = document.querySelector("#manuscript-number").value || "ijles-review";
@@ -193,31 +200,55 @@
 
         downloadButton.addEventListener("click", downloadReport);
 
-        form.addEventListener("submit", (event) => {
+        form.addEventListener("submit", async (event) => {
           event.preventDefault();
+          const endpoint = window.IJLES_CONFIG && window.IJLES_CONFIG.googleAppsScriptEndpoint;
+          if (!endpoint) {
+            submitStatus.textContent = "Online review submission is being configured. Please download the draft report and email it to IJLES for now.";
+            return;
+          }
+
           submitStatus.textContent = "Submitting review report...";
           const submitButton = form.querySelector('button[type="submit"]');
           submitButton.disabled = true;
 
-          fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" }
-          })
-            .then(async (response) => {
-              const result = await response.json().catch(() => ({}));
-              if (!response.ok || result.success === false) {
-                throw new Error(result.message || "Submission failed.");
-              }
-              submitStatus.textContent = "Thank you. Your review report has been submitted to IJLES.";
-              form.reset();
-            })
-            .catch((error) => {
-              submitStatus.textContent = `Submission could not be completed: ${error.message} Please download the draft report and email it to IJLES.`;
-            })
-            .finally(() => {
-              submitButton.disabled = false;
+          try {
+            const data = new FormData(form);
+            const file = document.querySelector("#annotated-file").files[0];
+            const payload = {
+              formType: "reviewer-evaluation",
+              manuscriptTitle: data.get("Manuscript Title") || "",
+              manuscriptNumber: data.get("Manuscript Number") || "",
+              recommendation: data.get("Recommendation") || ""
+            };
+
+            for (const [key, value] of data.entries()) {
+              if (value instanceof File || key === "botcheck") continue;
+              payload[key] = value;
+            }
+
+            if (file) {
+              payload.file = {
+                name: file.name,
+                mimeType: file.type || "application/octet-stream",
+                data: await readFileAsBase64(file)
+              };
+            }
+
+            await fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify(payload)
             });
+
+            submitStatus.textContent = "Thank you. Your review report has been submitted to IJLES.";
+            form.reset();
+          } catch (error) {
+            submitStatus.textContent = `Submission could not be completed: ${error.message} Please download the draft report and email it to IJLES.`;
+          } finally {
+            submitButton.disabled = false;
+          }
         });
 
         if (sessionStorage.getItem("ijlesReviewerAccess") === "true") {

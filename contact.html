@@ -25,10 +25,7 @@
       <section class="section"><div class="container content-layout"><aside class="toc"><a href="#submit-form">Submit Form</a><a href="#checklist">Submission Checklist</a><a href="#files">Required Files</a><a href="#timeline">Review Timeline</a><a href="#ethics">Ethics Note</a></aside>
         <div class="content-card submission-page">
           <h2 id="submit-form">Submit Manuscript</h2>
-          <form class="submission-form" id="author-submission-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
-            <input type="hidden" name="access_key" value="8df6df37-933e-405f-9120-bb059b85d7fa">
-            <input type="hidden" name="subject" value="IJLES Manuscript Submission">
-            <input type="hidden" name="from_name" value="IJLES Author Submission">
+          <form class="submission-form" id="author-submission-form" action="#" method="POST" enctype="multipart/form-data">
             <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
             <div class="form-grid">
               <div class="form-row wide"><label for="submission-title">Manuscript Title</label><input id="submission-title" name="Manuscript Title" required></div>
@@ -58,7 +55,7 @@
               <button class="button primary" type="submit">Submit Manuscript</button>
               <a class="button secondary" href="mailto:ijlescontact@gmail.com?subject=Manuscript%20Submission%20-%20Author%20Surname%20-%20Short%20Title">Email Backup</a>
             </div>
-            <p class="form-note" id="author-submit-status" role="status">After pressing submit, the manuscript information and file will be sent to IJLES through Web3Forms.</p>
+            <p class="form-note" id="author-submit-status" role="status">After pressing submit, the manuscript information and file will be sent to the IJLES editorial office.</p>
           </form>
 
           <h2 id="checklist">Submission Checklist</h2>
@@ -110,31 +107,64 @@
         const status = document.querySelector("#author-submit-status");
         if (!form || !status) return;
 
-        form.addEventListener("submit", (event) => {
+        const readFileAsBase64 = (file) => new Promise((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = String(reader.result || "");
+            resolve(result.includes(",") ? result.split(",").pop() : result);
+          };
+          reader.onerror = () => reject(reader.error || new Error("File could not be read."));
+          reader.readAsDataURL(file);
+        });
+
+        form.addEventListener("submit", async (event) => {
           event.preventDefault();
+          const endpoint = window.IJLES_CONFIG && window.IJLES_CONFIG.googleAppsScriptEndpoint;
+          if (!endpoint) {
+            status.textContent = "Online submission is being configured. Please use the Email Backup button for now.";
+            return;
+          }
+
           status.textContent = "Submitting manuscript...";
           const submitButton = form.querySelector('button[type="submit"]');
           submitButton.disabled = true;
 
-          fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" }
-          })
-            .then(async (response) => {
-              const result = await response.json().catch(() => ({}));
-              if (!response.ok || result.success === false) {
-                throw new Error(result.message || "Submission failed.");
+          try {
+            const file = document.querySelector("#submission-file").files[0];
+            if (!file) throw new Error("Please select a manuscript file.");
+
+            const payload = {
+              formType: "author-submission",
+              manuscriptTitle: document.querySelector("#submission-title").value.trim(),
+              correspondingAuthor: document.querySelector("#corresponding-author").value.trim(),
+              authorEmail: document.querySelector("#author-email").value.trim(),
+              affiliation: document.querySelector("#author-affiliation").value.trim(),
+              articleType: document.querySelector("#article-type").value,
+              authorNote: document.querySelector("#submission-note").value.trim(),
+              originalityDeclaration: form.querySelector('[name="Originality Declaration"]').checked ? "Confirmed" : "",
+              ethicsDeclaration: form.querySelector('[name="Ethics Declaration"]').checked ? "Confirmed" : "",
+              correspondenceConsent: form.querySelector('[name="Correspondence Consent"]').checked ? "Confirmed" : "",
+              file: {
+                name: file.name,
+                mimeType: file.type || "application/octet-stream",
+                data: await readFileAsBase64(file)
               }
-              status.textContent = "Thank you. Your manuscript submission has been sent to IJLES.";
-              form.reset();
-            })
-            .catch((error) => {
-              status.textContent = `Submission could not be completed: ${error.message} Please use the Email Backup button.`;
-            })
-            .finally(() => {
-              submitButton.disabled = false;
+            };
+
+            await fetch(endpoint, {
+              method: "POST",
+              mode: "no-cors",
+              headers: { "Content-Type": "text/plain;charset=utf-8" },
+              body: JSON.stringify(payload)
             });
+
+            status.textContent = "Thank you. Your manuscript submission has been sent to the IJLES editorial office.";
+            form.reset();
+          } catch (error) {
+            status.textContent = `Submission could not be completed: ${error.message} Please use the Email Backup button.`;
+          } finally {
+            submitButton.disabled = false;
+          }
         });
       })();
     </script>
