@@ -56,40 +56,48 @@
           <input type="hidden" name="subject" value="IJLES Reviewer Evaluation">
           <input type="hidden" name="from_name" value="IJLES Reviewer Portal">
           <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
-          <h2>1. Manuscript Information</h2>
-          <div class="form-grid">
-            <div class="form-row wide"><label for="manuscript-title">Manuscript Title</label><input id="manuscript-title" name="Manuscript Title" required></div>
-            <div class="form-row"><label for="manuscript-number">Manuscript Number <span class="optional-label">optional</span></label><input id="manuscript-number" name="Manuscript Number" placeholder="IJLES-2026-0001"></div>
-            <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="attachment" type="file" accept=".doc,.docx,.pdf"><small>Optional. Upload an annotated DOC, DOCX, or PDF file if requested by the editorial office.</small></div>
-          </div>
+          <section class="reviewer-section reviewer-section-info">
+            <h2>1. Manuscript Information</h2>
+            <div class="form-grid">
+              <div class="form-row wide"><label for="manuscript-title">Manuscript Title</label><input id="manuscript-title" name="Manuscript Title" required></div>
+              <div class="form-row"><label for="manuscript-number">Manuscript Number <span class="optional-label">optional</span></label><input id="manuscript-number" name="Manuscript Number" placeholder="IJLES-2026-0001"></div>
+              <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="attachment" type="file" accept=".doc,.docx,.pdf"><small>Optional. Upload an annotated DOC, DOCX, or PDF file if requested by the editorial office.</small></div>
+            </div>
+          </section>
 
-          <h2>2. Reviewer Blind Review Comments to Author</h2>
-          <p class="form-note">Kindly enter comments based on the sections below. Where possible, include page, row, paragraph, table, or figure references for the author.</p>
-          <div class="review-sections" id="comment-sections"></div>
+          <section class="reviewer-section reviewer-section-comments">
+            <h2>2. Reviewer Blind Review Comments to Author</h2>
+            <p class="form-note">Kindly enter comments based on the sections below. Where possible, include page, row, paragraph, table, or figure references for the author.</p>
+            <div class="review-sections" id="comment-sections"></div>
+          </section>
 
-          <h2>3. Reviewer Decision Comment</h2>
-          <div class="form-row single">
-            <label for="decision-comment">Overall evaluation on the manuscript</label>
-            <textarea id="decision-comment" name="Reviewer Decision Comment" rows="5" required></textarea>
-          </div>
-          <div class="form-row single">
-            <label for="recommendation">Please select one</label>
-            <select id="recommendation" name="Recommendation" required>
-              <option value="">Select decision...</option>
-              <option>Accept</option>
-              <option>Accept with minor revisions</option>
-              <option>Major revisions required</option>
-              <option>Revise and resubmit</option>
-              <option>Reject</option>
-            </select>
-          </div>
+          <section class="reviewer-section reviewer-section-decision">
+            <h2>3. Reviewer Decision Comment</h2>
+            <div class="form-row single">
+              <label for="decision-comment">Overall evaluation on the manuscript</label>
+              <textarea id="decision-comment" name="Reviewer Decision Comment" rows="5" required></textarea>
+            </div>
+            <div class="form-row single">
+              <label for="recommendation">Please select one</label>
+              <select id="recommendation" name="Recommendation" required>
+                <option value="">Select decision...</option>
+                <option>Accept</option>
+                <option>Accept with minor revisions</option>
+                <option>Major revisions required</option>
+                <option>Revise and resubmit</option>
+                <option>Reject</option>
+              </select>
+            </div>
+          </section>
 
-          <h2>4. Confidential Comments to the Editor</h2>
-          <p class="form-note">Optional. Authors will not see this.</p>
-          <div class="form-row single">
-            <label for="editor-comments">Optional comments for the editor only</label>
-            <textarea id="editor-comments" name="Confidential Comments to Editor" rows="5" placeholder="Optional comments for the editor only..."></textarea>
-          </div>
+          <section class="reviewer-section reviewer-section-editor">
+            <h2>4. Confidential Comments to the Editor</h2>
+            <p class="form-note">Optional. Authors will not see this.</p>
+            <div class="form-row single">
+              <label for="editor-comments">Optional comments for the editor only</label>
+              <textarea id="editor-comments" name="Confidential Comments to Editor" rows="5" placeholder="Optional comments for the editor only..."></textarea>
+            </div>
+          </section>
 
           <div class="form-actions">
             <button class="button primary" type="submit">Submit Evaluation</button>
