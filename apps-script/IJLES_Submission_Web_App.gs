@@ -54,10 +54,15 @@ function doGet() {
 function saveAuthorSubmission_(payload) {
   const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("IJLES");
-  const folderName = cleanName_(`${submissionId} - ${payload.manuscriptTitle || "Untitled Manuscript"}`);
+  const submissionBaseName = makeSubmissionBaseName_(
+    "Submission",
+    payload.correspondingAuthor || "Unknown Author",
+    payload.manuscriptTitle || "Untitled Manuscript"
+  );
+  const folderName = cleanName_(`${submissionBaseName}_${submissionId}`);
   const yearFolder = getOrCreateChildFolder_(workspace.authorFolder, currentYear_());
   const folder = yearFolder.createFolder(folderName);
-  const file = saveUploadedFile_(folder, payload.file);
+  const file = saveUploadedFile_(folder, payload.file, submissionBaseName);
 
   const row = [
     new Date(),
@@ -82,7 +87,7 @@ function saveAuthorSubmission_(payload) {
 
   MailApp.sendEmail({
     to: IJLES_CONFIG.notificationEmail,
-    subject: `IJLES Manuscript Submission - ${submissionId}`,
+    subject: `${submissionBaseName} - ${submissionId}`,
     htmlBody: [
       `<p><strong>New IJLES manuscript submission received.</strong></p>`,
       `<p><strong>Submission ID:</strong> ${escapeHtml_(submissionId)}</p>`,
@@ -101,12 +106,17 @@ function saveAuthorSubmission_(payload) {
 function saveReviewerEvaluation_(payload) {
   const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("REV");
-  const folderName = cleanName_(`${submissionId} - ${payload.manuscriptTitle || payload.manuscriptNumber || "Reviewer Report"}`);
+  const reviewBaseName = makeSubmissionBaseName_(
+    "Review",
+    payload.manuscriptNumber || "NoNumber",
+    payload.manuscriptTitle || "Reviewer Report"
+  );
+  const folderName = cleanName_(`${reviewBaseName}_${submissionId}`);
   const yearFolder = getOrCreateChildFolder_(workspace.reviewerFolder, currentYear_());
   const folder = yearFolder.createFolder(folderName);
-  const file = saveUploadedFile_(folder, payload.file);
+  const file = saveUploadedFile_(folder, payload.file, reviewBaseName);
   const reportFile = folder.createFile(
-    `${submissionId}-review-report.txt`,
+    `${reviewBaseName}_${submissionId}_review-report.txt`,
     buildReviewerReportText_(payload),
     MimeType.PLAIN_TEXT
   );
@@ -246,13 +256,17 @@ function ensureSheetHeaders_(spreadsheetId, headers) {
   }
 }
 
-function saveUploadedFile_(folder, filePayload) {
+function saveUploadedFile_(folder, filePayload, preferredBaseName) {
   if (!filePayload || !filePayload.data) return null;
   const bytes = Utilities.base64Decode(filePayload.data);
+  const originalName = cleanName_(filePayload.name || "uploaded-file");
+  const targetName = preferredBaseName
+    ? `${preferredBaseName}${getFileExtension_(originalName)}`
+    : originalName;
   const blob = Utilities.newBlob(
     bytes,
     filePayload.mimeType || "application/octet-stream",
-    cleanName_(filePayload.name || "uploaded-file")
+    cleanName_(targetName)
   );
   return folder.createFile(blob);
 }
@@ -276,6 +290,27 @@ function makeSubmissionId_(prefix) {
 
 function currentYear_() {
   return Utilities.formatDate(new Date(), Session.getScriptTimeZone(), "yyyy");
+}
+
+function makeSubmissionBaseName_(prefix, authorOrNumber, title) {
+  return [prefix, authorOrNumber, title]
+    .map((part) => compactName_(part))
+    .filter(Boolean)
+    .join("_")
+    .slice(0, 130);
+}
+
+function compactName_(value) {
+  return String(value || "")
+    .replace(/[\\/:*?"<>|#%{}~&]/g, " ")
+    .replace(/\s+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function getFileExtension_(fileName) {
+  const match = String(fileName || "").match(/\.[A-Za-z0-9]{1,8}$/);
+  return match ? match[0] : "";
 }
 
 function cleanName_(value) {

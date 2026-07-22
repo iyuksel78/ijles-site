@@ -12,10 +12,10 @@ Script ilk başarılı gönderimde aşağıdaki yapıyı otomatik oluşturur. Bu
     - `IJLES Reviewer Report Log`
   - `01 Author Submissions`
     - `2026`
-      - `IJLES-YYYYMMDD-HHMMSS - Manuscript Title`
+      - `Submission_YazarAdi_ManuscriptTitle_IJLES-YYYYMMDD-HHMMSS`
   - `02 Reviewer Reports`
     - `2026`
-      - `REV-YYYYMMDD-HHMMSS - Manuscript Title`
+      - `Review_ManuscriptNumber_ManuscriptTitle_REV-YYYYMMDD-HHMMSS`
 
 ## Kurulum Adımları
 
@@ -43,6 +43,16 @@ Script ilk başarılı gönderimde aşağıdaki yapıyı otomatik oluşturur. Bu
 - Hakem formu doldurulunca dosya ve metin raporu `02 Reviewer Reports / yıl / rapor klasörü` içine kaydedilir.
 - Hakem kayıtları `IJLES Reviewer Report Log` Sheet dosyasına yazılır.
 - Hakem bildirimi de `ijlescontact@gmail.com` adresine gönderilir.
+
+## Dosya Adlandırma
+
+Yazar başvurularında hem klasör hem de yüklenen dosya şu mantıkla adlandırılır:
+
+`Submission_YazarAdi_ManuscriptTitle`
+
+Örneğin:
+
+`Submission_Yusuf_Ay_Discussion_of_the_Clans_IJLES-20260722-164500`
 
 ## Not
 
