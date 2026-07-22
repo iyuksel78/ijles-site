@@ -9,7 +9,7 @@ window.IJLES_CONFIG = {
   submissionEmail: "ijlescontact@gmail.com",
   submissionMethod: "Online submission",
   submissionPortalAvailable: true,
-  googleAppsScriptEndpoint: "",
+  googleAppsScriptEndpoint: "https://script.google.com/macros/s/AKfycbzWxHs32p8iDMiZZuca999zMmWqWQ14ZMzwRM4zGrvfzgwfeJyGad2S4zgdLC6nWn3h/exec",
   googleDrive: {
     editorialFolderId: "1Lpaq2rloa3gJMCJlpduc83PEF5AmfrJp",
     authorSubmissionsFolderId: "1890PneWVnnMBIOlPkamHpwOOsebJIVZf",
