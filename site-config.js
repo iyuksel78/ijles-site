@@ -11,11 +11,11 @@ window.IJLES_CONFIG = {
   submissionPortalAvailable: true,
   googleAppsScriptEndpoint: "https://script.google.com/macros/s/AKfycbzWxHs32p8iDMiZZuca999zMmWqWQ14ZMzwRM4zGrvfzgwfeJyGad2S4zgdLC6nWn3h/exec",
   googleDrive: {
-    editorialFolderId: "1Lpaq2rloa3gJMCJlpduc83PEF5AmfrJp",
-    authorSubmissionsFolderId: "1890PneWVnnMBIOlPkamHpwOOsebJIVZf",
-    reviewerReportsFolderId: "1SnlITC8LaDzmRpBGEyeAW3Gg3Bshx9I1",
-    authorSubmissionLogSheetId: "1w-W-Njycan8Vrb940qaaGq85I_P_qVHTQXYz9cTLVko",
-    reviewerReportLogSheetId: "1QcxGR5siK6uva_vXLs-oTvjwjRvOqyrqafu5DrzWGBs",
+    editorialFolderName: "IJLES Editorial Office",
+    authorSubmissionsFolderName: "Author Submissions",
+    reviewerReportsFolderName: "Reviewer Reports",
+    authorSubmissionLogSheetName: "IJLES Submission Log",
+    reviewerReportLogSheetName: "IJLES Reviewer Report Log",
     notificationEmail: "ijlescontact@gmail.com"
   },
   reviewModel: "Blind external peer review",

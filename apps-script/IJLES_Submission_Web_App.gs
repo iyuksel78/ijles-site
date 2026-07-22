@@ -1,9 +1,10 @@
 const IJLES_CONFIG = {
   notificationEmail: "ijlescontact@gmail.com",
-  authorSubmissionsFolderId: "1890PneWVnnMBIOlPkamHpwOOsebJIVZf",
-  reviewerReportsFolderId: "1SnlITC8LaDzmRpBGEyeAW3Gg3Bshx9I1",
-  authorSubmissionLogSheetId: "1w-W-Njycan8Vrb940qaaGq85I_P_qVHTQXYz9cTLVko",
-  reviewerReportLogSheetId: "1QcxGR5siK6uva_vXLs-oTvjwjRvOqyrqafu5DrzWGBs"
+  rootFolderName: "IJLES Editorial Office",
+  authorSubmissionsFolderName: "Author Submissions",
+  reviewerReportsFolderName: "Reviewer Reports",
+  authorSubmissionLogName: "IJLES Submission Log",
+  reviewerReportLogName: "IJLES Reviewer Report Log"
 };
 
 function doPost(e) {
@@ -21,10 +22,10 @@ function doPost(e) {
 }
 
 function saveAuthorSubmission_(payload) {
+  const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("IJLES");
   const folderName = cleanName_(`${submissionId} - ${payload.manuscriptTitle || "Untitled Manuscript"}`);
-  const parent = DriveApp.getFolderById(IJLES_CONFIG.authorSubmissionsFolderId);
-  const folder = parent.createFolder(folderName);
+  const folder = workspace.authorFolder.createFolder(folderName);
   const file = saveUploadedFile_(folder, payload.file);
 
   const row = [
@@ -44,7 +45,7 @@ function saveAuthorSubmission_(payload) {
     folder.getUrl()
   ];
 
-  SpreadsheetApp.openById(IJLES_CONFIG.authorSubmissionLogSheetId)
+  SpreadsheetApp.openById(workspace.authorSheetId)
     .getSheets()[0]
     .appendRow(row);
 
@@ -67,10 +68,10 @@ function saveAuthorSubmission_(payload) {
 }
 
 function saveReviewerEvaluation_(payload) {
+  const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("REV");
   const folderName = cleanName_(`${submissionId} - ${payload.manuscriptTitle || payload.manuscriptNumber || "Reviewer Report"}`);
-  const parent = DriveApp.getFolderById(IJLES_CONFIG.reviewerReportsFolderId);
-  const folder = parent.createFolder(folderName);
+  const folder = workspace.reviewerFolder.createFolder(folderName);
   const file = saveUploadedFile_(folder, payload.file);
   const reportFile = folder.createFile(
     `${submissionId}-review-report.txt`,
@@ -89,7 +90,7 @@ function saveReviewerEvaluation_(payload) {
     folder.getUrl()
   ];
 
-  SpreadsheetApp.openById(IJLES_CONFIG.reviewerReportLogSheetId)
+  SpreadsheetApp.openById(workspace.reviewerSheetId)
     .getSheets()[0]
     .appendRow(row);
 
@@ -108,6 +109,106 @@ function saveReviewerEvaluation_(payload) {
   });
 
   return { submissionId, folderUrl: folder.getUrl(), reportUrl: reportFile.getUrl() };
+}
+
+function getWorkspace_() {
+  const props = PropertiesService.getScriptProperties();
+  const rootFolder = getOrCreateFolder_(IJLES_CONFIG.rootFolderName);
+  const authorFolder = getOrCreateChildFolder_(rootFolder, IJLES_CONFIG.authorSubmissionsFolderName);
+  const reviewerFolder = getOrCreateChildFolder_(rootFolder, IJLES_CONFIG.reviewerReportsFolderName);
+
+  const authorSheetId = getOrCreateSpreadsheet_(
+    "AUTHOR_SUBMISSION_LOG_SHEET_ID",
+    IJLES_CONFIG.authorSubmissionLogName,
+    [
+      "Timestamp",
+      "Submission ID",
+      "Manuscript Title",
+      "Corresponding Author",
+      "Author Email",
+      "Affiliation",
+      "Article Type",
+      "Author Note",
+      "Originality Declaration",
+      "Ethics Declaration",
+      "Correspondence Consent",
+      "File Name",
+      "File URL",
+      "Folder URL"
+    ],
+    rootFolder
+  );
+
+  const reviewerSheetId = getOrCreateSpreadsheet_(
+    "REVIEWER_REPORT_LOG_SHEET_ID",
+    IJLES_CONFIG.reviewerReportLogName,
+    [
+      "Timestamp",
+      "Report ID",
+      "Manuscript Title",
+      "Manuscript Number",
+      "Recommendation",
+      "File Name",
+      "File URL",
+      "Folder URL"
+    ],
+    rootFolder
+  );
+
+  props.setProperty("ROOT_FOLDER_ID", rootFolder.getId());
+  props.setProperty("AUTHOR_SUBMISSIONS_FOLDER_ID", authorFolder.getId());
+  props.setProperty("REVIEWER_REPORTS_FOLDER_ID", reviewerFolder.getId());
+
+  return { rootFolder, authorFolder, reviewerFolder, authorSheetId, reviewerSheetId };
+}
+
+function getOrCreateFolder_(name) {
+  const folders = DriveApp.getFoldersByName(name);
+  return folders.hasNext() ? folders.next() : DriveApp.createFolder(name);
+}
+
+function getOrCreateChildFolder_(parent, name) {
+  const folders = parent.getFoldersByName(name);
+  return folders.hasNext() ? folders.next() : parent.createFolder(name);
+}
+
+function getOrCreateSpreadsheet_(propertyName, fileName, headers, parentFolder) {
+  const props = PropertiesService.getScriptProperties();
+  const existingId = props.getProperty(propertyName);
+  if (existingId) {
+    try {
+      SpreadsheetApp.openById(existingId);
+      return existingId;
+    } catch (error) {
+      props.deleteProperty(propertyName);
+    }
+  }
+
+  const files = DriveApp.getFilesByName(fileName);
+  if (files.hasNext()) {
+    const file = files.next();
+    props.setProperty(propertyName, file.getId());
+    ensureSheetHeaders_(file.getId(), headers);
+    return file.getId();
+  }
+
+  const spreadsheet = SpreadsheetApp.create(fileName);
+  const file = DriveApp.getFileById(spreadsheet.getId());
+  parentFolder.addFile(file);
+  DriveApp.getRootFolder().removeFile(file);
+  props.setProperty(propertyName, spreadsheet.getId());
+  ensureSheetHeaders_(spreadsheet.getId(), headers);
+  return spreadsheet.getId();
+}
+
+function ensureSheetHeaders_(spreadsheetId, headers) {
+  const sheet = SpreadsheetApp.openById(spreadsheetId).getSheets()[0];
+  const firstRow = sheet.getRange(1, 1, 1, headers.length).getValues()[0];
+  const hasHeaders = firstRow.some((cell) => String(cell || "").trim());
+  if (!hasHeaders) {
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+    sheet.setFrozenRows(1);
+  }
 }
 
 function saveUploadedFile_(folder, filePayload) {

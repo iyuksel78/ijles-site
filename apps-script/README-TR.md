@@ -2,18 +2,15 @@
 
 Bu klasördeki `IJLES_Submission_Web_App.gs` dosyası, IJLES web sitesindeki yazar başvuru formunu ve hakem değerlendirme formunu Google Drive + Google Sheets + Gmail bildirimi ile çalıştırır.
 
-## Oluşturulan Google Drive Yapısı
+## Google Drive Yapısı
+
+Script ilk başarılı gönderimde aşağıdaki yapıyı otomatik oluşturur. Bu dosyalar, Apps Script projesini hangi Google hesabında deploy ettiysen o hesabın Drive alanında görünür.
 
 - Ana klasör: `IJLES Editorial Office`
-  - URL: https://drive.google.com/drive/folders/1Lpaq2rloa3gJMCJlpduc83PEF5AmfrJp
 - Yazar başvuruları klasörü: `Author Submissions`
-  - URL: https://drive.google.com/drive/folders/1890PneWVnnMBIOlPkamHpwOOsebJIVZf
 - Hakem raporları klasörü: `Reviewer Reports`
-  - URL: https://drive.google.com/drive/folders/1SnlITC8LaDzmRpBGEyeAW3Gg3Bshx9I1
-- Yazar başvuru kayıtları Sheet:
-  - URL: https://docs.google.com/spreadsheets/d/1w-W-Njycan8Vrb940qaaGq85I_P_qVHTQXYz9cTLVko
-- Hakem raporu kayıtları Sheet:
-  - URL: https://docs.google.com/spreadsheets/d/1QcxGR5siK6uva_vXLs-oTvjwjRvOqyrqafu5DrzWGBs
+- Yazar başvuru kayıtları Sheet: `IJLES Submission Log`
+- Hakem raporu kayıtları Sheet: `IJLES Reviewer Report Log`
 
 ## Kurulum Adımları
 
@@ -31,6 +28,7 @@ Bu klasördeki `IJLES_Submission_Web_App.gs` dosyası, IJLES web sitesindeki yaz
 10. Google izin ekranı açılırsa Drive, Sheets ve Mail izinlerini onayla.
 11. Deploy sonucunda çıkan `Web app URL` adresini kopyala.
 12. Bu URL'yi `site-config.js` içindeki `googleAppsScriptEndpoint` alanına yapıştır.
+13. Daha önce deploy ettiysen `Deploy > Manage deployments > Edit` menüsünden `New version` seçerek güncelle. Böylece aynı Web App URL çalışmaya devam eder.
 
 ## Çalışma Mantığı
 
