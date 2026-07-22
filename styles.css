@@ -313,12 +313,15 @@ h3 {
   grid-template-columns: repeat(4, 1fr);
 }
 
-.metrics div {
+.metrics div,
+.metrics a {
+  display: block;
   padding: 24px 26px;
   border-left: 1px solid rgba(255, 255, 255, .16);
 }
 
-.metrics div:last-child {
+.metrics div:last-child,
+.metrics a:last-child {
   border-right: 1px solid rgba(255, 255, 255, .16);
 }
 
@@ -334,6 +337,10 @@ h3 {
 .metrics span {
   color: rgba(255, 255, 255, .74);
   font-size: 13px;
+}
+
+.metrics a:hover {
+  background: rgba(255, 255, 255, .08);
 }
 
 .section {
@@ -1827,7 +1834,8 @@ details p {
     margin-top: 12px;
   }
 
-  .metrics div {
+  .metrics div,
+  .metrics a {
     border-right: 1px solid rgba(255, 255, 255, .16);
   }
 
