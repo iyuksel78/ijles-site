@@ -1735,6 +1735,27 @@ details p {
   color: var(--white);
 }
 
+.footer-identity {
+  max-width: 260px;
+  text-align: center;
+}
+
+.footer .footer-identity a {
+  display: inline-flex;
+  justify-content: center;
+}
+
+.footer .footer-identity .brand-logo {
+  width: 42px;
+  height: 42px;
+}
+
+.footer .footer-identity p {
+  margin-top: 10px;
+  font-size: 12px;
+  line-height: 1.42;
+}
+
 .footer .brand small,
 .footer p {
   color: rgba(255, 255, 255, .68);
