@@ -1416,51 +1416,53 @@ details p {
   min-height: calc(100vh - 114px);
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(420px, .95fr);
-  background: var(--white);
+  background: #fbfaf7;
 }
 
 .reviewer-login-art {
   display: grid;
   place-items: center;
   background:
-    radial-gradient(circle at 68% 44%, rgba(122, 62, 170, .9), transparent 34%),
-    linear-gradient(145deg, #24104b 0%, #3d1a74 52%, #7430a6 100%);
+    linear-gradient(90deg, rgba(7, 27, 42, .94), rgba(7, 27, 42, .82)),
+    url("assets/ijles-hero.png") center / cover no-repeat;
+  border-right: 1px solid rgba(11, 45, 69, .12);
 }
 
 .lock-illustration {
   position: relative;
-  width: 330px;
-  height: 470px;
+  width: 280px;
+  height: 388px;
+  opacity: .88;
 }
 
 .lock-shackle {
   position: absolute;
-  left: 72px;
-  top: 18px;
-  width: 188px;
-  height: 188px;
-  border: 10px solid rgba(255, 255, 255, .94);
+  left: 62px;
+  top: 10px;
+  width: 160px;
+  height: 160px;
+  border: 8px solid rgba(255, 255, 255, .9);
   border-bottom: 0;
-  border-radius: 96px 96px 0 0;
+  border-radius: 82px 82px 0 0;
 }
 
 .lock-body {
   position: absolute;
-  left: 28px;
-  top: 178px;
-  width: 274px;
-  height: 196px;
-  border: 10px solid rgba(255, 255, 255, .94);
+  left: 24px;
+  top: 146px;
+  width: 232px;
+  height: 164px;
+  border: 8px solid rgba(255, 255, 255, .9);
   border-radius: 3px;
 }
 
 .lock-body::after {
   position: absolute;
   left: 50%;
-  top: 72px;
-  width: 42px;
-  height: 42px;
-  border: 8px solid rgba(255, 255, 255, .94);
+  top: 60px;
+  width: 34px;
+  height: 34px;
+  border: 7px solid rgba(255, 255, 255, .9);
   border-radius: 50%;
   content: "";
   transform: translateX(-50%);
@@ -1468,26 +1470,26 @@ details p {
 
 .lock-password {
   position: absolute;
-  left: 28px;
+  left: 24px;
   bottom: 0;
-  width: 274px;
-  height: 78px;
+  width: 232px;
+  height: 64px;
   display: flex;
   align-items: center;
-  padding: 0 28px;
-  border: 9px solid rgba(255, 255, 255, .94);
-  border-radius: 39px;
-  color: rgba(255, 255, 255, .94);
-  font-size: 48px;
+  padding: 0 24px;
+  border: 7px solid rgba(255, 255, 255, .9);
+  border-radius: 32px;
+  color: rgba(255, 255, 255, .9);
+  font-size: 38px;
   font-weight: 800;
   letter-spacing: .08em;
 }
 
 .lock-password::after {
   width: 3px;
-  height: 42px;
+  height: 34px;
   margin-left: 12px;
-  background: rgba(255, 255, 255, .94);
+  background: rgba(255, 255, 255, .9);
   content: "";
 }
 
@@ -1502,35 +1504,34 @@ details p {
 }
 
 .reviewer-login-brand {
-  margin-bottom: 72px;
+  margin-bottom: 48px;
 }
 
 .reviewer-login-form h1 {
   max-width: none;
   margin: 0;
-  color: #15191f;
-  font-family: Inter, system-ui, sans-serif;
-  font-size: 44px;
-  font-weight: 800;
-  line-height: 1.05;
+  color: var(--navy);
+  font-size: 42px;
+  line-height: 1.08;
 }
 
 .reviewer-login-form p {
-  margin: 18px 0 70px;
-  color: #242a32;
-  font-size: 18px;
+  margin: 14px 0 46px;
+  color: #405061;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .password-line {
   display: grid;
   gap: 6px;
-  margin-bottom: 34px;
-  border-bottom: 1px solid #cfd4db;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(11, 45, 69, .22);
 }
 
 .password-line label {
-  color: #68717d;
-  font-size: 17px;
+  color: #5b6876;
+  font-size: 14px;
 }
 
 .password-line input {
@@ -1539,24 +1540,24 @@ details p {
   border: 0;
   outline: 0;
   background: transparent;
-  color: #15191f;
+  color: var(--navy);
   font: inherit;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .reviewer-enter {
-  min-height: 62px;
+  min-height: 54px;
   border: 0;
   border-radius: 8px;
-  background: #311b67;
+  background: var(--navy);
   color: var(--white);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 800;
   cursor: pointer;
 }
 
 .reviewer-enter:hover {
-  background: #432184;
+  background: #164966;
 }
 
 .reviewer-form h2 {

@@ -111,7 +111,8 @@
     <script src="script.js"></script>
     <script>
       (() => {
-        const accessCode = "IJLES-REVIEW-2026";
+        const accessCode = "article2026";
+        const accessSessionKey = "ijlesReviewerAccessArticle2026";
         const comments = [
           ["Originality and Contribution", "Comment on the originality of the study and its contribution to language, education, or society."],
           ["Theoretical Background and Literature", "Comment on the adequacy, relevance, and currency of the literature and theoretical framework."],
@@ -133,7 +134,7 @@
         const unlockForm = () => {
           gate.classList.add("is-hidden");
           panel.classList.remove("is-hidden");
-          sessionStorage.setItem("ijlesReviewerAccess", "true");
+          sessionStorage.setItem(accessSessionKey, "true");
         };
 
         comments.forEach(([title, hint], index) => {
@@ -251,7 +252,7 @@
           }
         });
 
-        if (sessionStorage.getItem("ijlesReviewerAccess") === "true") {
+        if (sessionStorage.getItem(accessSessionKey) === "true") {
           unlockForm();
         }
       })();
