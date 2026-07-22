@@ -958,95 +958,132 @@ h3 {
   overflow: hidden;
   border: 1px solid rgba(35, 51, 124, .34);
   background:
-    radial-gradient(circle at 74% 34%, rgba(37, 109, 115, .18), transparent 24%),
-    radial-gradient(circle at 30% 76%, rgba(181, 122, 40, .2), transparent 22%),
-    #eef0f5;
+    radial-gradient(circle at 72% 25%, rgba(35, 109, 115, .16), transparent 24%),
+    linear-gradient(180deg, #f7f9fb 0%, #edf3f4 58%, #f7f3eb 100%);
 }
 
-.jacs-art::before,
-.jacs-art::after {
+.cover-network,
+.cover-book,
+.cover-dialogue,
+.cover-person {
   position: absolute;
+  display: block;
+}
+
+.cover-network {
+  inset: 30px 28px 34px;
+  opacity: .62;
+  background:
+    linear-gradient(25deg, transparent 0 42%, rgba(11, 45, 69, .42) 42.4% 43.2%, transparent 43.6%),
+    linear-gradient(-18deg, transparent 0 34%, rgba(35, 109, 115, .42) 34.4% 35.2%, transparent 35.6%),
+    linear-gradient(62deg, transparent 0 58%, rgba(181, 122, 40, .38) 58.4% 59.2%, transparent 59.6%),
+    radial-gradient(circle at 18% 36%, #236d73 0 4px, transparent 5px),
+    radial-gradient(circle at 48% 18%, #b57a28 0 4px, transparent 5px),
+    radial-gradient(circle at 78% 42%, #0b2d45 0 4px, transparent 5px),
+    radial-gradient(circle at 56% 74%, #236d73 0 4px, transparent 5px);
+}
+
+.cover-book {
+  left: 50%;
+  bottom: 34px;
+  width: 220px;
+  height: 112px;
+  transform: translateX(-50%) perspective(340px) rotateX(16deg);
+  border-bottom: 5px solid rgba(11, 45, 69, .78);
+}
+
+.cover-book::before,
+.cover-book::after {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
   content: "";
-  width: 520px;
-  height: 4px;
-  left: -70px;
-  top: 158px;
-  background: #0b2d45;
-  transform: rotate(-24deg);
-  box-shadow: 0 34px 0 #0b2d45, 0 -34px 0 #0b2d45;
+  background:
+    repeating-linear-gradient(180deg, transparent 0 17px, rgba(11, 45, 69, .17) 18px 20px),
+    #fffdf7;
+  border: 3px solid rgba(11, 45, 69, .7);
 }
 
-.jacs-art::after {
-  width: 420px;
-  height: 3px;
-  left: 72px;
-  top: 176px;
-  transform: rotate(32deg);
-  opacity: .72;
-  box-shadow: 0 28px 0 #236d73, 0 -28px 0 #236d73;
+.cover-book::before {
+  left: 0;
+  border-right: 2px solid rgba(181, 122, 40, .7);
+  border-radius: 8px 0 0 18px;
+  transform: skewY(8deg);
 }
 
-.ribbon {
+.cover-book::after {
+  right: 0;
+  border-left: 2px solid rgba(181, 122, 40, .7);
+  border-radius: 0 8px 18px 0;
+  transform: skewY(-8deg);
+}
+
+.cover-dialogue {
+  width: 92px;
+  height: 54px;
+  border: 3px solid rgba(35, 109, 115, .82);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, .62);
+}
+
+.cover-dialogue::after {
   position: absolute;
-  display: block;
-  height: 34px;
-  border: 7px solid #d8aa2f;
-  border-left: 0;
-  border-right: 0;
-  border-radius: 50%;
-  transform: rotate(-24deg);
+  right: 16px;
+  bottom: -12px;
+  width: 18px;
+  height: 18px;
+  border-right: 3px solid rgba(35, 109, 115, .82);
+  border-bottom: 3px solid rgba(35, 109, 115, .82);
+  content: "";
+  transform: rotate(28deg);
 }
 
-.r1 {
-  width: 480px;
-  left: -92px;
-  top: 78px;
+.d1 {
+  left: 34px;
+  top: 62px;
 }
 
-.r2 {
-  width: 440px;
-  right: -150px;
-  top: 202px;
-  transform: rotate(18deg);
+.d2 {
+  right: 36px;
+  top: 88px;
+  border-color: rgba(181, 122, 40, .86);
 }
 
-.r3 {
-  width: 290px;
-  left: 52px;
-  bottom: 48px;
-  border-color: #236d73;
-  transform: rotate(26deg);
+.d2::after {
+  border-color: rgba(181, 122, 40, .86);
 }
 
-.node {
-  position: absolute;
-  display: block;
-  width: 58px;
-  height: 58px;
+.cover-person {
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   background:
-    linear-gradient(135deg, rgba(255,255,255,.54), transparent),
-    #c7684f;
-  border: 4px solid rgba(11, 45, 69, .76);
+    radial-gradient(circle at 50% 31%, #ffffff 0 9px, transparent 10px),
+    radial-gradient(circle at 50% 76%, rgba(255, 255, 255, .86) 0 15px, transparent 16px),
+    #236d73;
+  border: 3px solid rgba(11, 45, 69, .72);
+  box-shadow: 0 10px 18px rgba(16, 32, 51, .12);
 }
 
-.n1 {
-  left: 92px;
-  top: 154px;
+.p1 {
+  left: 70px;
+  bottom: 98px;
 }
 
-.n2 {
-  right: 88px;
-  top: 78px;
-  background-color: #66539b;
+.p2 {
+  right: 82px;
+  bottom: 118px;
+  background-color: #b57a28;
 }
 
-.n3 {
-  right: 150px;
-  bottom: 34px;
+.p3 {
+  left: 50%;
+  top: 112px;
   width: 40px;
   height: 40px;
-  background-color: #e7c74f;
+  transform: translateX(-50%);
+  background-color: #0b2d45;
 }
 
 .jacs-footer {
