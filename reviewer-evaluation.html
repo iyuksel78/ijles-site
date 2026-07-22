@@ -51,10 +51,14 @@
       </section>
 
       <section class="section reviewer-form-section is-hidden" id="review-form-panel">
-        <form class="container reviewer-form content-card" id="reviewer-form">
+        <form class="container reviewer-form content-card" id="reviewer-form" action="https://api.web3forms.com/submit" method="POST" enctype="multipart/form-data">
+          <input type="hidden" name="access_key" value="8df6df37-933e-405f-9120-bb059b85d7fa">
+          <input type="hidden" name="subject" value="IJLES Reviewer Evaluation">
+          <input type="hidden" name="from_name" value="IJLES Reviewer Portal">
+          <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
           <div class="form-alert">
             <strong>Confidentiality note:</strong>
-            Do not upload the manuscript or review materials to public AI tools or third-party systems. This static form prepares an email report; attach any annotated manuscript file manually in your email client.
+            Do not upload the manuscript or review materials to public AI tools or other systems that may compromise confidentiality. This form sends the review report directly to the IJLES editorial office.
           </div>
 
           <h2>1. Manuscript Information</h2>
@@ -66,7 +70,7 @@
             <div class="form-row"><label for="date-due">Date to Send Review Report</label><input id="date-due" name="Date to Send Review Report" type="date"></div>
             <div class="form-row"><label for="reviewer-name">Reviewer Name</label><input id="reviewer-name" name="Reviewer Name" placeholder="Optional if blind to editor is not required"></div>
             <div class="form-row"><label for="reviewer-email">Reviewer Email</label><input id="reviewer-email" name="Reviewer Email" type="email"></div>
-            <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="Annotated Manuscript File" type="file" accept=".doc,.docx,.pdf"><small>This file cannot be uploaded directly on GitHub Pages. Please attach it to the prepared email.</small></div>
+            <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="attachment" type="file" accept=".doc,.docx,.pdf"><small>Optional. Upload an annotated DOC, DOCX, or PDF file if requested by the editorial office.</small></div>
           </div>
 
           <h2>2. Reviewer Blind Review Comments to Author</h2>
@@ -109,13 +113,14 @@
           <p class="form-note">1 = Excellent, 2 = Good, 3 = Fair, 4 = Poor</p>
           <div class="rating-table" id="rating-table"></div>
           <div class="score-box"><strong>Total Score:</strong> <span id="total-score">0</span></div>
+          <input type="hidden" id="total-score-field" name="Total Score" value="0">
 
           <div class="form-actions">
             <button class="button primary" type="submit">Submit Evaluation</button>
             <button class="button secondary" type="button" id="download-review">Download Draft Report</button>
             <button class="button quiet" type="reset">Clear Form</button>
           </div>
-          <p class="form-note">After pressing submit, your browser will download a text report and open an email draft to IJLES. Attach the report and any annotated manuscript file before sending.</p>
+          <p class="form-note" id="submit-status" role="status">After pressing submit, the report will be sent directly to IJLES through Web3Forms.</p>
         </form>
       </section>
     </main>
@@ -156,8 +161,10 @@
         const commentHost = document.querySelector("#comment-sections");
         const ratingHost = document.querySelector("#rating-table");
         const totalScore = document.querySelector("#total-score");
+        const totalScoreField = document.querySelector("#total-score-field");
         const form = document.querySelector("#reviewer-form");
         const downloadButton = document.querySelector("#download-review");
+        const submitStatus = document.querySelector("#submit-status");
 
         const unlockForm = () => {
           gate.classList.add("is-hidden");
@@ -181,7 +188,9 @@
 
         const updateScore = () => {
           const values = [...document.querySelectorAll(".rating-select")].map((select) => Number(select.value || 0));
-          totalScore.textContent = String(values.reduce((sum, value) => sum + value, 0));
+          const score = String(values.reduce((sum, value) => sum + value, 0));
+          totalScore.textContent = score;
+          totalScoreField.value = score;
         };
 
         const buildReport = () => {
@@ -198,7 +207,7 @@
           }
           lines.push(`Total Score: ${totalScore.textContent}`);
           lines.push("");
-          lines.push("Note: If an annotated manuscript file was selected, please attach it manually to the email before sending.");
+          lines.push("Note: This draft is a local copy of the submitted reviewer report.");
           return lines.join("\\n");
         };
 
@@ -241,11 +250,31 @@
 
         form.addEventListener("submit", (event) => {
           event.preventDefault();
-          const report = downloadReport();
-          const manuscript = document.querySelector("#manuscript-number").value || "IJLES manuscript";
-          const subject = encodeURIComponent(`Reviewer Evaluation - ${manuscript}`);
-          const body = encodeURIComponent(`Dear IJLES Editorial Office,\\n\\nPlease find my reviewer evaluation report attached.\\n\\nSummary:\\n${report.slice(0, 1200)}\\n\\nIf the full text is truncated in this email draft, please use the downloaded review-report.txt file.\\n\\nRegards,`);
-          window.location.href = `mailto:ijlescontact@gmail.com?subject=${subject}&body=${body}`;
+          submitStatus.textContent = "Submitting review report...";
+          const submitButton = form.querySelector('button[type="submit"]');
+          submitButton.disabled = true;
+          updateScore();
+
+          fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" }
+          })
+            .then(async (response) => {
+              const result = await response.json().catch(() => ({}));
+              if (!response.ok || result.success === false) {
+                throw new Error(result.message || "Submission failed.");
+              }
+              submitStatus.textContent = "Thank you. Your review report has been submitted to IJLES.";
+              form.reset();
+              updateScore();
+            })
+            .catch((error) => {
+              submitStatus.textContent = `Submission could not be completed: ${error.message} Please download the draft report and email it to IJLES.`;
+            })
+            .finally(() => {
+              submitButton.disabled = false;
+            });
         });
 
         if (sessionStorage.getItem("ijlesReviewerAccess") === "true") {
