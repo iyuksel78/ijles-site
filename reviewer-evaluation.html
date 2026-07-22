@@ -107,7 +107,7 @@
     </main>
 
     <footer class="footer"><div class="container copyright">&copy; <span data-current-year></span> International Journal of Language, Education and Society. All rights reserved.</div></footer>
-    <script src="site-config.js"></script>
+    <script src="site-config.js?v=20260722-1"></script>
     <script src="script.js"></script>
     <script>
       (() => {
@@ -202,7 +202,7 @@
 
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
-          const endpoint = window.IJLES_CONFIG && window.IJLES_CONFIG.googleAppsScriptEndpoint;
+          const endpoint = (window.IJLES_CONFIG && window.IJLES_CONFIG.googleAppsScriptEndpoint) || "https://script.google.com/macros/s/AKfycbzWxHs32p8iDMiZZuca999zMmWqWQ14ZMzwRM4zGrvfzgwfeJyGad2S4zgdLC6nWn3h/exec";
           if (!endpoint) {
             submitStatus.textContent = "Online review submission is being configured. Please download the draft report and email it to IJLES for now.";
             return;
