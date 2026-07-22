@@ -58,11 +58,8 @@
           <input type="checkbox" name="botcheck" class="is-hidden" tabindex="-1" autocomplete="off">
           <h2>1. Manuscript Information</h2>
           <div class="form-grid">
-            <div class="form-row"><label for="journal-name">Journal Name</label><input id="journal-name" name="Journal Name" value="International Journal of Language, Education and Society (IJLES)"></div>
-            <div class="form-row"><label for="manuscript-number">Manuscript Number</label><input id="manuscript-number" name="Manuscript Number" placeholder="IJLES-2026-0001" required></div>
             <div class="form-row wide"><label for="manuscript-title">Manuscript Title</label><input id="manuscript-title" name="Manuscript Title" required></div>
-            <div class="form-row"><label for="reviewer-name">Reviewer Name</label><input id="reviewer-name" name="Reviewer Name" placeholder="Optional if blind to editor is not required"></div>
-            <div class="form-row"><label for="reviewer-email">Reviewer Email</label><input id="reviewer-email" name="Reviewer Email" type="email"></div>
+            <div class="form-row"><label for="manuscript-number">Manuscript Number <span class="optional-label">optional</span></label><input id="manuscript-number" name="Manuscript Number" placeholder="IJLES-2026-0001"></div>
             <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="attachment" type="file" accept=".doc,.docx,.pdf"><small>Optional. Upload an annotated DOC, DOCX, or PDF file if requested by the editorial office.</small></div>
           </div>
 
@@ -102,12 +99,6 @@
             <textarea id="author-specific-comments" name="Specific Comments for Authors" rows="6" placeholder="Point-by-point comments for the authors..."></textarea>
           </div>
 
-          <h2>7. Please Rate the Following</h2>
-          <p class="form-note">1 = Excellent, 2 = Good, 3 = Fair, 4 = Poor</p>
-          <div class="rating-table" id="rating-table"></div>
-          <div class="score-box"><strong>Total Score:</strong> <span id="total-score">0</span></div>
-          <input type="hidden" id="total-score-field" name="Total Score" value="0">
-
           <div class="form-actions">
             <button class="button primary" type="submit">Submit Evaluation</button>
             <button class="button secondary" type="button" id="download-review">Download Draft Report</button>
@@ -125,26 +116,12 @@
       (() => {
         const accessCode = "IJLES-REVIEW-2026";
         const comments = [
-          ["Originality", "Provide your comments on how original the research is and whether it contributes new knowledge."],
-          ["Scientific Quality", "Provide your comments on the manuscript's quality from scientific viewpoints."],
-          ["Relevance to the Field(s) of this Journal", "Provide your comments on how relevant the manuscript is to the field(s) covered by IJLES."],
-          ["General Comment", "Provide the key observations or salient points that you can identify from the manuscript."],
-          ["Abstract", "Comment on purpose, design/methodology/approach, findings, limitations/implications, originality/value, and keywords."],
-          ["Introduction", "Comment on background information, research problem, objectives, and research questions."],
-          ["Literature Review", "Comment on adequacy, updated literature, underpinning theory, and theoretical framework."],
-          ["Methodology", "Comment on framework/model, variables, design, instruments, sampling, data collection, and analysis techniques."],
-          ["Results", "Comment on empirical findings/evidence, including accuracy, reliability, and validity."],
-          ["Discussions", "Comment on the points discussed and justified by the author."],
-          ["Conclusions", "Comment on limitations, future research recommendations, and conclusion."],
-          ["References / Bibliography", "Comment on APA 7 format, completeness, and consistency with in-text citations."],
-          ["Figures", "Comment on size, clarity, resolution, captions, and journal guideline compliance."],
-          ["Tables", "Comment on size, clarity, APA format, captions, and journal guideline compliance."],
-          ["Others", "Provide other comments such as presentation, language, organization, or formatting."]
-        ];
-        const ratings = [
-          "Originality", "Scientific Quality", "Relevance to the Field(s) of Journal", "Depth of Research", "Abstract",
-          "Introduction", "Literature Review", "Methodology", "Results", "Discussions", "Conclusions",
-          "References / Bibliography", "Figures", "Tables", "Clarity of Presentation"
+          ["Originality and Contribution", "Comment on the originality of the study and its contribution to language, education, or society."],
+          ["Theoretical Background and Literature", "Comment on the adequacy, relevance, and currency of the literature and theoretical framework."],
+          ["Methodology", "Comment on research design, participants/sample, instruments, data collection, and analysis."],
+          ["Findings and Discussion", "Comment on the clarity, validity, interpretation, and significance of the findings."],
+          ["Organization, Language, and APA Style", "Comment on structure, academic language, tables, figures, citations, references, and APA 7 style."],
+          ["Required Revisions", "List the main revisions the author should complete, preferably point by point."]
         ];
         const gate = document.querySelector("#access-panel");
         const panel = document.querySelector("#review-form-panel");
@@ -152,9 +129,6 @@
         const password = document.querySelector("#reviewer-password");
         const message = document.querySelector("#access-message");
         const commentHost = document.querySelector("#comment-sections");
-        const ratingHost = document.querySelector("#rating-table");
-        const totalScore = document.querySelector("#total-score");
-        const totalScoreField = document.querySelector("#total-score-field");
         const form = document.querySelector("#reviewer-form");
         const downloadButton = document.querySelector("#download-review");
         const submitStatus = document.querySelector("#submit-status");
@@ -172,20 +146,6 @@
           commentHost.appendChild(field);
         });
 
-        ratings.forEach((title, index) => {
-          const row = document.createElement("label");
-          row.className = "rating-row";
-          row.innerHTML = `<span>${index + 1}. ${title}</span><select name="Rating - ${title}" class="rating-select"><option value="">Select</option><option value="1">1 - Excellent</option><option value="2">2 - Good</option><option value="3">3 - Fair</option><option value="4">4 - Poor</option></select>`;
-          ratingHost.appendChild(row);
-        });
-
-        const updateScore = () => {
-          const values = [...document.querySelectorAll(".rating-select")].map((select) => Number(select.value || 0));
-          const score = String(values.reduce((sum, value) => sum + value, 0));
-          totalScore.textContent = score;
-          totalScoreField.value = score;
-        };
-
         const buildReport = () => {
           const data = new FormData(form);
           const lines = ["IJLES REVIEWER EVALUATION REPORT", ""];
@@ -198,8 +158,6 @@
             }
             lines.push("");
           }
-          lines.push(`Total Score: ${totalScore.textContent}`);
-          lines.push("");
           lines.push("Note: This draft is a local copy of the submitted reviewer report.");
           return lines.join("\\n");
         };
@@ -233,12 +191,6 @@
           }
         });
 
-        document.addEventListener("change", (event) => {
-          if (event.target.classList.contains("rating-select")) {
-            updateScore();
-          }
-        });
-
         downloadButton.addEventListener("click", downloadReport);
 
         form.addEventListener("submit", (event) => {
@@ -246,7 +198,6 @@
           submitStatus.textContent = "Submitting review report...";
           const submitButton = form.querySelector('button[type="submit"]');
           submitButton.disabled = true;
-          updateScore();
 
           fetch(form.action, {
             method: "POST",
@@ -260,7 +211,6 @@
               }
               submitStatus.textContent = "Thank you. Your review report has been submitted to IJLES.";
               form.reset();
-              updateScore();
             })
             .catch((error) => {
               submitStatus.textContent = `Submission could not be completed: ${error.message} Please download the draft report and email it to IJLES.`;

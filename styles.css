@@ -1512,6 +1512,13 @@ details p {
   font-weight: 800;
 }
 
+.optional-label {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .form-row input,
 .form-row select,
 .form-row textarea,
