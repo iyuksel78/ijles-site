@@ -1314,8 +1314,162 @@ details p {
   max-width: 620px;
 }
 
+.reviewer-login {
+  min-height: calc(100vh - 114px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(420px, .95fr);
+  background: var(--white);
+}
+
+.reviewer-login-art {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 68% 44%, rgba(122, 62, 170, .9), transparent 34%),
+    linear-gradient(145deg, #24104b 0%, #3d1a74 52%, #7430a6 100%);
+}
+
+.lock-illustration {
+  position: relative;
+  width: 330px;
+  height: 470px;
+}
+
+.lock-shackle {
+  position: absolute;
+  left: 72px;
+  top: 18px;
+  width: 188px;
+  height: 188px;
+  border: 10px solid rgba(255, 255, 255, .94);
+  border-bottom: 0;
+  border-radius: 96px 96px 0 0;
+}
+
+.lock-body {
+  position: absolute;
+  left: 28px;
+  top: 178px;
+  width: 274px;
+  height: 196px;
+  border: 10px solid rgba(255, 255, 255, .94);
+  border-radius: 3px;
+}
+
+.lock-body::after {
+  position: absolute;
+  left: 50%;
+  top: 72px;
+  width: 42px;
+  height: 42px;
+  border: 8px solid rgba(255, 255, 255, .94);
+  border-radius: 50%;
+  content: "";
+  transform: translateX(-50%);
+}
+
+.lock-password {
+  position: absolute;
+  left: 28px;
+  bottom: 0;
+  width: 274px;
+  height: 78px;
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  border: 9px solid rgba(255, 255, 255, .94);
+  border-radius: 39px;
+  color: rgba(255, 255, 255, .94);
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.lock-password::after {
+  width: 3px;
+  height: 42px;
+  margin-left: 12px;
+  background: rgba(255, 255, 255, .94);
+  content: "";
+}
+
+.reviewer-login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 520px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 64px 44px;
+}
+
+.reviewer-login-brand {
+  margin-bottom: 72px;
+}
+
+.reviewer-login-form h1 {
+  max-width: none;
+  margin: 0;
+  color: #15191f;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.05;
+}
+
+.reviewer-login-form p {
+  margin: 18px 0 70px;
+  color: #242a32;
+  font-size: 18px;
+}
+
+.password-line {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 34px;
+  border-bottom: 1px solid #cfd4db;
+}
+
+.password-line label {
+  color: #68717d;
+  font-size: 17px;
+}
+
+.password-line input {
+  width: 100%;
+  height: 46px;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #15191f;
+  font: inherit;
+  font-size: 18px;
+}
+
+.reviewer-enter {
+  min-height: 62px;
+  border: 0;
+  border-radius: 8px;
+  background: #311b67;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.reviewer-enter:hover {
+  background: #432184;
+}
+
 .reviewer-form h2 {
-  margin-top: 26px;
+  margin: 34px 0 18px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #d8d8d8;
+  color: #05070a;
+  font-family: Inter, system-ui, sans-serif;
+  font-size: 23px;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .form-alert {
@@ -1366,13 +1520,13 @@ details p {
 .form-row input,
 .form-row select,
 .rating-row select {
-  min-height: 42px;
-  padding: 9px 11px;
+  min-height: 50px;
+  padding: 11px 13px;
 }
 
 .form-row textarea {
-  min-height: 118px;
-  padding: 11px;
+  min-height: 132px;
+  padding: 13px;
   resize: vertical;
 }
 
@@ -1390,10 +1544,13 @@ details p {
 }
 
 .review-block {
-  padding: 14px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #f8faf9;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.review-block label {
+  font-size: 18px;
 }
 
 .rating-table {
@@ -1427,6 +1584,7 @@ details p {
 .form-actions {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   margin-top: 24px;
 }
@@ -1519,8 +1677,21 @@ details p {
   .home-grid,
   .info-grid.six,
   .two-column,
-  .contact-grid {
+  .contact-grid,
+  .reviewer-login {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reviewer-login {
+    grid-template-columns: 1fr;
+  }
+
+  .reviewer-login-art {
+    min-height: 360px;
+  }
+
+  .reviewer-login-brand {
+    margin-bottom: 42px;
   }
 }
 
@@ -1587,6 +1758,35 @@ details p {
   .index-grid,
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .reviewer-login {
+    min-height: auto;
+  }
+
+  .reviewer-login-art {
+    min-height: 300px;
+  }
+
+  .lock-illustration {
+    transform: scale(.62);
+  }
+
+  .reviewer-login-form {
+    padding: 42px 24px;
+  }
+
+  .reviewer-login-form h1 {
+    font-size: 36px;
+  }
+
+  .reviewer-login-form p {
+    margin-bottom: 42px;
+    font-size: 16px;
+  }
+
+  .reviewer-form h2 {
+    font-size: 20px;
   }
 
   .rating-row {

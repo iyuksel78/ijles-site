@@ -26,23 +26,26 @@
     </header>
 
     <main>
-      <section class="page-header compact-page-header">
-        <div class="container">
-          <p class="section-kicker">Invited Reviewers</p>
-          <h1>Submit Reviewer Evaluation</h1>
-          <p>This page is intended only for invited IJLES reviewers. Please use the access code provided by the editorial office.</p>
-        </div>
-      </section>
-
-      <section class="section reviewer-gate" id="access-panel">
-        <div class="container content-card narrow-card">
-          <h2>Reviewer Access</h2>
-          <p>Enter the reviewer access code sent by the IJLES editorial office.</p>
-          <div class="form-row single">
-            <label for="reviewer-password">Access Code</label>
-            <input id="reviewer-password" type="password" autocomplete="off" placeholder="Enter access code">
+      <section class="reviewer-login" id="access-panel">
+        <div class="reviewer-login-art" aria-hidden="true">
+          <div class="lock-illustration">
+            <span class="lock-shackle"></span>
+            <span class="lock-body"></span>
+            <span class="lock-password">****</span>
           </div>
-          <button class="button primary" type="button" id="unlock-review">Continue</button>
+        </div>
+        <div class="reviewer-login-form">
+          <a class="brand reviewer-login-brand" href="index.html">
+            <img class="brand-logo" src="assets/ijles-emblem.svg" alt="" width="46" height="46">
+            <span><strong>IJLES</strong><small>International Journal of Language, Education and Society</small></span>
+          </a>
+          <h1>Reviewer area</h1>
+          <p>Please enter the password to access the review page.</p>
+          <div class="password-line">
+            <label for="reviewer-password">Type password</label>
+            <input id="reviewer-password" type="password" autocomplete="off">
+          </div>
+          <button class="reviewer-enter" type="button" id="unlock-review">Enter</button>
           <p class="form-note" id="access-message" role="status"></p>
         </div>
       </section>
@@ -54,7 +57,7 @@
             Do not upload the manuscript or review materials to public AI tools or third-party systems. This static form prepares an email report; attach any annotated manuscript file manually in your email client.
           </div>
 
-          <h2>Manuscript Information</h2>
+          <h2>1. Manuscript Information</h2>
           <div class="form-grid">
             <div class="form-row"><label for="journal-name">Journal Name</label><input id="journal-name" name="Journal Name" value="International Journal of Language, Education and Society (IJLES)"></div>
             <div class="form-row"><label for="manuscript-number">Manuscript Number</label><input id="manuscript-number" name="Manuscript Number" placeholder="IJLES-2026-0001" required></div>
@@ -66,19 +69,20 @@
             <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="Annotated Manuscript File" type="file" accept=".doc,.docx,.pdf"><small>This file cannot be uploaded directly on GitHub Pages. Please attach it to the prepared email.</small></div>
           </div>
 
-          <h2>Reviewer Blind Review Comments to Author</h2>
+          <h2>2. Reviewer Blind Review Comments to Author</h2>
           <p class="form-note">Kindly enter comments based on the sections below. Where possible, include page, row, paragraph, table, or figure references for the author.</p>
           <div class="review-sections" id="comment-sections"></div>
 
-          <h2>Reviewer Decision Comment</h2>
+          <h2>3. Reviewer Decision Comment</h2>
           <div class="form-row single">
             <label for="decision-comment">Overall evaluation on the manuscript</label>
             <textarea id="decision-comment" name="Reviewer Decision Comment" rows="5" required></textarea>
           </div>
+          <h2>4. Overall Recommendation</h2>
           <div class="form-row single">
-            <label for="recommendation">Recommendation</label>
+            <label for="recommendation">Please select one</label>
             <select id="recommendation" name="Recommendation" required>
-              <option value="">Select recommendation</option>
+              <option value="">Select decision...</option>
               <option>Accept</option>
               <option>Accept with minor revisions</option>
               <option>Major revisions required</option>
@@ -87,7 +91,21 @@
             </select>
           </div>
 
-          <h2>Please Rate the Following</h2>
+          <h2>5. Confidential Comments to the Editor</h2>
+          <p class="form-note">Optional. Authors will not see this.</p>
+          <div class="form-row single">
+            <label for="editor-comments">Optional comments for the editor only</label>
+            <textarea id="editor-comments" name="Confidential Comments to Editor" rows="5" placeholder="Optional comments for the editor only..."></textarea>
+          </div>
+
+          <h2>6. Specific Comments for the Authors</h2>
+          <p class="form-note">Please list detailed, constructive comments point by point.</p>
+          <div class="form-row single">
+            <label for="author-specific-comments">Point-by-point comments for authors</label>
+            <textarea id="author-specific-comments" name="Specific Comments for Authors" rows="6" placeholder="Point-by-point comments for the authors..."></textarea>
+          </div>
+
+          <h2>7. Please Rate the Following</h2>
           <p class="form-note">1 = Excellent, 2 = Good, 3 = Fair, 4 = Poor</p>
           <div class="rating-table" id="rating-table"></div>
           <div class="score-box"><strong>Total Score:</strong> <span id="total-score">0</span></div>
