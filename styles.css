@@ -1104,6 +1104,317 @@ h3 {
   font-size: 12px;
 }
 
+.cover-options-header {
+  background:
+    linear-gradient(90deg, rgba(247, 243, 235, .96), rgba(247, 243, 235, .84)),
+    url("assets/ijles-hero.png") right center / auto 100% no-repeat;
+}
+
+.cover-options-page {
+  background: #f8faf9;
+}
+
+.cover-option-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  align-items: start;
+}
+
+.cover-option-card {
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+}
+
+.cover-option-card .cover-preview {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 16px;
+  padding: 14px 15px;
+  box-shadow: 0 14px 30px rgba(16, 32, 51, .12);
+}
+
+.cover-option-card .jacs-date {
+  top: 18px;
+  left: 15px;
+  width: 58px;
+  font-size: 8px;
+}
+
+.cover-option-card .jacs-masthead {
+  gap: 6px;
+  padding-left: 56px;
+  font-size: 32px;
+}
+
+.cover-option-card .jacs-masthead i {
+  height: 30px;
+}
+
+.cover-option-card .jacs-title {
+  margin-bottom: 11px;
+  font-size: 9px;
+  line-height: 1.55;
+}
+
+.cover-option-card .jacs-art {
+  height: 58%;
+}
+
+.cover-option-card .jacs-footer {
+  padding-top: 10px;
+}
+
+.cover-option-card .jacs-footer strong {
+  font-size: 15px;
+}
+
+.cover-option-card .jacs-footer span {
+  font-size: 10px;
+}
+
+.cover-option-card h2 {
+  margin: 0 0 8px;
+  font-size: 17px;
+}
+
+.cover-option-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.art-classroom {
+  background:
+    radial-gradient(circle at 78% 26%, rgba(181, 122, 40, .14), transparent 22%),
+    linear-gradient(180deg, #f7f9fb, #edf4f2 62%, #f6f1e8);
+}
+
+.class-board,
+.class-table,
+.class-book,
+.class-person {
+  position: absolute;
+  display: block;
+}
+
+.class-board {
+  top: 28px;
+  left: 34px;
+  right: 34px;
+  height: 72px;
+  border: 3px solid rgba(11, 45, 69, .72);
+  border-radius: 4px;
+  background:
+    linear-gradient(0deg, transparent 0 45%, rgba(255, 255, 255, .62) 46% 54%, transparent 55%),
+    #236d73;
+}
+
+.class-board::before {
+  position: absolute;
+  left: 20px;
+  top: 18px;
+  width: 60px;
+  height: 3px;
+  background: rgba(255, 255, 255, .78);
+  box-shadow: 0 14px 0 rgba(255, 255, 255, .6), 118px 8px 0 rgba(255, 255, 255, .56);
+  content: "";
+}
+
+.class-table {
+  left: 50%;
+  bottom: 48px;
+  width: 224px;
+  height: 70px;
+  border: 3px solid rgba(11, 45, 69, .65);
+  border-radius: 50%;
+  background: rgba(255, 253, 247, .82);
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.class-book {
+  width: 62px;
+  height: 34px;
+  border: 2px solid rgba(11, 45, 69, .72);
+  border-radius: 5px;
+  background: #fffdf7;
+}
+
+.class-book::after {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background: rgba(181, 122, 40, .78);
+  content: "";
+}
+
+.b1 {
+  left: 84px;
+  bottom: 76px;
+  transform: rotate(9deg);
+}
+
+.b2 {
+  right: 82px;
+  bottom: 88px;
+  transform: rotate(-12deg);
+}
+
+.class-person {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 30%, #fff 0 8px, transparent 9px),
+    radial-gradient(circle at 50% 76%, rgba(255, 255, 255, .84) 0 14px, transparent 15px),
+    #b57a28;
+  border: 3px solid rgba(11, 45, 69, .66);
+}
+
+.cp1 {
+  left: 50px;
+  bottom: 116px;
+}
+
+.cp2 {
+  right: 50px;
+  bottom: 118px;
+  background-color: #236d73;
+}
+
+.cp3 {
+  left: 50%;
+  bottom: 138px;
+  transform: translateX(-50%);
+  background-color: #0b2d45;
+}
+
+.art-language-map {
+  background:
+    radial-gradient(circle at 26% 68%, rgba(181, 122, 40, .16), transparent 23%),
+    linear-gradient(180deg, #f7f9fb, #edf2f7 58%, #f7f3eb);
+}
+
+.map-shape,
+.language-chip,
+.language-line {
+  position: absolute;
+  display: block;
+}
+
+.map-shape {
+  border: 3px solid rgba(11, 45, 69, .58);
+  border-radius: 46% 54% 42% 58%;
+  background: rgba(255, 255, 255, .5);
+}
+
+.m1 {
+  left: 42px;
+  top: 48px;
+  width: 112px;
+  height: 86px;
+  transform: rotate(-14deg);
+}
+
+.m2 {
+  right: 44px;
+  top: 66px;
+  width: 104px;
+  height: 78px;
+  transform: rotate(12deg);
+}
+
+.m3 {
+  left: 96px;
+  bottom: 44px;
+  width: 146px;
+  height: 72px;
+  transform: rotate(7deg);
+}
+
+.language-chip {
+  padding: 7px 10px;
+  border: 2px solid rgba(11, 45, 69, .42);
+  border-radius: 999px;
+  background: #fffdf7;
+  color: var(--navy);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.l1 {
+  left: 48px;
+  bottom: 116px;
+}
+
+.l2 {
+  right: 42px;
+  top: 118px;
+  color: var(--teal);
+}
+
+.l3 {
+  left: 50%;
+  bottom: 72px;
+  color: var(--gold);
+  transform: translateX(-50%);
+}
+
+.language-line {
+  left: 52px;
+  right: 52px;
+  top: 50%;
+  height: 3px;
+  background: rgba(35, 109, 115, .44);
+  transform: rotate(-18deg);
+  box-shadow: 0 34px 0 rgba(181, 122, 40, .32), 0 -34px 0 rgba(11, 45, 69, .28);
+}
+
+.art-typographic {
+  display: grid;
+  place-content: center;
+  gap: 9px;
+  padding: 24px;
+  background:
+    linear-gradient(90deg, rgba(11, 45, 69, .05) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(180deg, #fbfaf7, #eef3f4);
+}
+
+.art-typographic span,
+.art-typographic i {
+  position: relative;
+  display: block;
+}
+
+.art-typographic span {
+  color: var(--navy);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.art-typographic span:nth-child(2) {
+  color: var(--teal);
+}
+
+.art-typographic span:nth-child(3) {
+  color: var(--gold);
+}
+
+.art-typographic i {
+  width: 160px;
+  height: 2px;
+  margin-top: 7px;
+  background: linear-gradient(90deg, var(--navy), var(--teal), var(--gold));
+}
+
 .issue-contents h2 {
   margin-top: 0;
 }
@@ -1857,6 +2168,15 @@ details p {
   .issue-layout,
   .issue-page-layout,
   .content-layout,
+  .cover-option-grid,
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .split,
+  .issue-layout,
+  .issue-page-layout,
+  .content-layout,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1946,6 +2266,7 @@ details p {
   .people-grid,
   .people-grid.expanded,
   .home-grid,
+  .cover-option-grid,
   .info-grid.six,
   .two-column,
   .contact-grid,
