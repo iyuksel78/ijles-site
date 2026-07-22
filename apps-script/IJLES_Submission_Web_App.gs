@@ -21,6 +21,33 @@ function doPost(e) {
   }
 }
 
+function doGet() {
+  try {
+    const workspace = getWorkspace_();
+    const data = {
+      rootFolderUrl: workspace.rootFolder.getUrl(),
+      authorFolderUrl: workspace.authorFolder.getUrl(),
+      reviewerFolderUrl: workspace.reviewerFolder.getUrl(),
+      authorLogUrl: SpreadsheetApp.openById(workspace.authorSheetId).getUrl(),
+      reviewerLogUrl: SpreadsheetApp.openById(workspace.reviewerSheetId).getUrl()
+    };
+
+    return HtmlService.createHtmlOutput([
+      "<h1>IJLES Submission Portal is ready</h1>",
+      "<p>The Google Drive workspace has been created or verified for this account.</p>",
+      "<ul>",
+      `<li><a href="${data.rootFolderUrl}" target="_blank">IJLES Editorial Office</a></li>`,
+      `<li><a href="${data.authorFolderUrl}" target="_blank">Author Submissions</a></li>`,
+      `<li><a href="${data.reviewerFolderUrl}" target="_blank">Reviewer Reports</a></li>`,
+      `<li><a href="${data.authorLogUrl}" target="_blank">IJLES Submission Log</a></li>`,
+      `<li><a href="${data.reviewerLogUrl}" target="_blank">IJLES Reviewer Report Log</a></li>`,
+      "</ul>"
+    ].join(""));
+  } catch (error) {
+    return HtmlService.createHtmlOutput(`<h1>IJLES Submission Portal Error</h1><p>${escapeHtml_(error.message)}</p>`);
+  }
+}
+
 function saveAuthorSubmission_(payload) {
   const workspace = getWorkspace_();
   const submissionId = makeSubmissionId_("IJLES");

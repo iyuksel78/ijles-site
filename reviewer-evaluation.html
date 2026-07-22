@@ -242,7 +242,7 @@
               body: JSON.stringify(payload)
             });
 
-            submitStatus.textContent = "Thank you. Your review report has been submitted to IJLES.";
+            submitStatus.textContent = "Your review submission request has been sent. Please check the IJLES Drive folder and ijlescontact@gmail.com for confirmation.";
             form.reset();
           } catch (error) {
             submitStatus.textContent = `Submission could not be completed: ${error.message} Please download the draft report and email it to IJLES.`;
