@@ -145,6 +145,7 @@ summary:focus-visible {
 .menu a {
   padding: 10px 12px;
   border-radius: 7px;
+  white-space: nowrap;
 }
 
 .menu a:hover {
