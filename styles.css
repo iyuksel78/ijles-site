@@ -1306,6 +1306,131 @@ details p {
   margin: 7px 0;
 }
 
+.is-hidden {
+  display: none !important;
+}
+
+.narrow-card {
+  max-width: 620px;
+}
+
+.reviewer-form h2 {
+  margin-top: 26px;
+}
+
+.form-alert {
+  padding: 14px 16px;
+  border: 1px solid rgba(181, 122, 40, .28);
+  border-radius: 8px;
+  background: #fff8eb;
+  color: #405061;
+  font-size: 14px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.form-row {
+  display: grid;
+  gap: 6px;
+}
+
+.form-row.wide,
+.form-row.single {
+  grid-column: 1 / -1;
+}
+
+.form-row label,
+.rating-row span {
+  color: var(--navy);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea,
+.rating-row select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+}
+
+.form-row input,
+.form-row select,
+.rating-row select {
+  min-height: 42px;
+  padding: 9px 11px;
+}
+
+.form-row textarea {
+  min-height: 118px;
+  padding: 11px;
+  resize: vertical;
+}
+
+.form-row small,
+.form-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.review-sections {
+  display: grid;
+  gap: 14px;
+}
+
+.review-block {
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f8faf9;
+}
+
+.rating-table {
+  display: grid;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rating-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 190px;
+  gap: 14px;
+  align-items: center;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.rating-row:last-child {
+  border-bottom: 0;
+}
+
+.score-box {
+  margin: 16px 0 8px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
 .footer {
   padding: 58px 0 26px;
   background: #071b2a;
@@ -1459,7 +1584,12 @@ details p {
   .two-column,
   .contact-grid,
   .submission-grid,
-  .index-grid {
+  .index-grid,
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rating-row {
     grid-template-columns: 1fr;
   }
 

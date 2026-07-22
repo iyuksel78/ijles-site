@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Submit Reviewer Evaluation | IJLES</title>
+    <meta name="description" content="Password-protected reviewer evaluation form for IJLES invited reviewers.">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="canonical" href="https://ijles.org/reviewer-evaluation.html">
+    <meta property="og:title" content="Submit Reviewer Evaluation | IJLES">
+    <meta property="og:description" content="Reviewer evaluation form for IJLES invited reviewers.">
+    <meta name="twitter:card" content="summary">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="topline"><div class="container topbar"><span>Reviewer evaluation portal</span><span>Confidential editorial correspondence</span><a href="mailto:ijlescontact@gmail.com">ijlescontact@gmail.com</a></div></div>
+      <nav class="container nav" aria-label="Primary navigation">
+        <a class="brand" href="index.html"><img class="brand-logo" src="assets/ijles-emblem.svg" alt="" width="46" height="46"><span><strong>IJLES</strong><small>International Journal of Language, Education and Society</small></span></a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu"><span></span><span></span><span></span></button>
+        <div class="menu" id="site-menu"><a href="index.html">Home</a><a href="reviewer-guidelines.html">Reviewer Guidelines</a><a class="nav-action active" href="reviewer-evaluation.html">Submit Evaluation</a></div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-header compact-page-header">
+        <div class="container">
+          <p class="section-kicker">Invited Reviewers</p>
+          <h1>Submit Reviewer Evaluation</h1>
+          <p>This page is intended only for invited IJLES reviewers. Please use the access code provided by the editorial office.</p>
+        </div>
+      </section>
+
+      <section class="section reviewer-gate" id="access-panel">
+        <div class="container content-card narrow-card">
+          <h2>Reviewer Access</h2>
+          <p>Enter the reviewer access code sent by the IJLES editorial office.</p>
+          <div class="form-row single">
+            <label for="reviewer-password">Access Code</label>
+            <input id="reviewer-password" type="password" autocomplete="off" placeholder="Enter access code">
+          </div>
+          <button class="button primary" type="button" id="unlock-review">Continue</button>
+          <p class="form-note" id="access-message" role="status"></p>
+        </div>
+      </section>
+
+      <section class="section reviewer-form-section is-hidden" id="review-form-panel">
+        <form class="container reviewer-form content-card" id="reviewer-form">
+          <div class="form-alert">
+            <strong>Confidentiality note:</strong>
+            Do not upload the manuscript or review materials to public AI tools or third-party systems. This static form prepares an email report; attach any annotated manuscript file manually in your email client.
+          </div>
+
+          <h2>Manuscript Information</h2>
+          <div class="form-grid">
+            <div class="form-row"><label for="journal-name">Journal Name</label><input id="journal-name" name="Journal Name" value="International Journal of Language, Education and Society (IJLES)"></div>
+            <div class="form-row"><label for="manuscript-number">Manuscript Number</label><input id="manuscript-number" name="Manuscript Number" placeholder="IJLES-2026-0001" required></div>
+            <div class="form-row wide"><label for="manuscript-title">Manuscript Title</label><input id="manuscript-title" name="Manuscript Title" required></div>
+            <div class="form-row"><label for="date-received">Date Received from Journal</label><input id="date-received" name="Date Received from Journal" type="date"></div>
+            <div class="form-row"><label for="date-due">Date to Send Review Report</label><input id="date-due" name="Date to Send Review Report" type="date"></div>
+            <div class="form-row"><label for="reviewer-name">Reviewer Name</label><input id="reviewer-name" name="Reviewer Name" placeholder="Optional if blind to editor is not required"></div>
+            <div class="form-row"><label for="reviewer-email">Reviewer Email</label><input id="reviewer-email" name="Reviewer Email" type="email"></div>
+            <div class="form-row wide"><label for="annotated-file">Annotated Manuscript File</label><input id="annotated-file" name="Annotated Manuscript File" type="file" accept=".doc,.docx,.pdf"><small>This file cannot be uploaded directly on GitHub Pages. Please attach it to the prepared email.</small></div>
+          </div>
+
+          <h2>Reviewer Blind Review Comments to Author</h2>
+          <p class="form-note">Kindly enter comments based on the sections below. Where possible, include page, row, paragraph, table, or figure references for the author.</p>
+          <div class="review-sections" id="comment-sections"></div>
+
+          <h2>Reviewer Decision Comment</h2>
+          <div class="form-row single">
+            <label for="decision-comment">Overall evaluation on the manuscript</label>
+            <textarea id="decision-comment" name="Reviewer Decision Comment" rows="5" required></textarea>
+          </div>
+          <div class="form-row single">
+            <label for="recommendation">Recommendation</label>
+            <select id="recommendation" name="Recommendation" required>
+              <option value="">Select recommendation</option>
+              <option>Accept</option>
+              <option>Accept with minor revisions</option>
+              <option>Major revisions required</option>
+              <option>Revise and resubmit</option>
+              <option>Reject</option>
+            </select>
+          </div>
+
+          <h2>Please Rate the Following</h2>
+          <p class="form-note">1 = Excellent, 2 = Good, 3 = Fair, 4 = Poor</p>
+          <div class="rating-table" id="rating-table"></div>
+          <div class="score-box"><strong>Total Score:</strong> <span id="total-score">0</span></div>
+
+          <div class="form-actions">
+            <button class="button primary" type="submit">Submit Evaluation</button>
+            <button class="button secondary" type="button" id="download-review">Download Draft Report</button>
+            <button class="button quiet" type="reset">Clear Form</button>
+          </div>
+          <p class="form-note">After pressing submit, your browser will download a text report and open an email draft to IJLES. Attach the report and any annotated manuscript file before sending.</p>
+        </form>
+      </section>
+    </main>
+
+    <footer class="footer"><div class="container copyright">&copy; <span data-current-year></span> International Journal of Language, Education and Society. All rights reserved.</div></footer>
+    <script src="site-config.js"></script>
+    <script src="script.js"></script>
+    <script>
+      (() => {
+        const accessCode = "IJLES-REVIEW-2026";
+        const comments = [
+          ["Originality", "Provide your comments on how original the research is and whether it contributes new knowledge."],
+          ["Scientific Quality", "Provide your comments on the manuscript's quality from scientific viewpoints."],
+          ["Relevance to the Field(s) of this Journal", "Provide your comments on how relevant the manuscript is to the field(s) covered by IJLES."],
+          ["General Comment", "Provide the key observations or salient points that you can identify from the manuscript."],
+          ["Abstract", "Comment on purpose, design/methodology/approach, findings, limitations/implications, originality/value, and keywords."],
+          ["Introduction", "Comment on background information, research problem, objectives, and research questions."],
+          ["Literature Review", "Comment on adequacy, updated literature, underpinning theory, and theoretical framework."],
+          ["Methodology", "Comment on framework/model, variables, design, instruments, sampling, data collection, and analysis techniques."],
+          ["Results", "Comment on empirical findings/evidence, including accuracy, reliability, and validity."],
+          ["Discussions", "Comment on the points discussed and justified by the author."],
+          ["Conclusions", "Comment on limitations, future research recommendations, and conclusion."],
+          ["References / Bibliography", "Comment on APA 7 format, completeness, and consistency with in-text citations."],
+          ["Figures", "Comment on size, clarity, resolution, captions, and journal guideline compliance."],
+          ["Tables", "Comment on size, clarity, APA format, captions, and journal guideline compliance."],
+          ["Others", "Provide other comments such as presentation, language, organization, or formatting."]
+        ];
+        const ratings = [
+          "Originality", "Scientific Quality", "Relevance to the Field(s) of Journal", "Depth of Research", "Abstract",
+          "Introduction", "Literature Review", "Methodology", "Results", "Discussions", "Conclusions",
+          "References / Bibliography", "Figures", "Tables", "Clarity of Presentation"
+        ];
+        const gate = document.querySelector("#access-panel");
+        const panel = document.querySelector("#review-form-panel");
+        const unlock = document.querySelector("#unlock-review");
+        const password = document.querySelector("#reviewer-password");
+        const message = document.querySelector("#access-message");
+        const commentHost = document.querySelector("#comment-sections");
+        const ratingHost = document.querySelector("#rating-table");
+        const totalScore = document.querySelector("#total-score");
+        const form = document.querySelector("#reviewer-form");
+        const downloadButton = document.querySelector("#download-review");
+
+        const unlockForm = () => {
+          gate.classList.add("is-hidden");
+          panel.classList.remove("is-hidden");
+          sessionStorage.setItem("ijlesReviewerAccess", "true");
+        };
+
+        comments.forEach(([title, hint], index) => {
+          const field = document.createElement("div");
+          field.className = "form-row single review-block";
+          field.innerHTML = `<label for="comment-${index + 1}">${index + 1}. ${title}</label><textarea id="comment-${index + 1}" name="${title}" rows="5" placeholder="${hint}"></textarea>`;
+          commentHost.appendChild(field);
+        });
+
+        ratings.forEach((title, index) => {
+          const row = document.createElement("label");
+          row.className = "rating-row";
+          row.innerHTML = `<span>${index + 1}. ${title}</span><select name="Rating - ${title}" class="rating-select"><option value="">Select</option><option value="1">1 - Excellent</option><option value="2">2 - Good</option><option value="3">3 - Fair</option><option value="4">4 - Poor</option></select>`;
+          ratingHost.appendChild(row);
+        });
+
+        const updateScore = () => {
+          const values = [...document.querySelectorAll(".rating-select")].map((select) => Number(select.value || 0));
+          totalScore.textContent = String(values.reduce((sum, value) => sum + value, 0));
+        };
+
+        const buildReport = () => {
+          const data = new FormData(form);
+          const lines = ["IJLES REVIEWER EVALUATION REPORT", ""];
+          for (const [key, value] of data.entries()) {
+            if (value instanceof File) {
+              lines.push(`${key}: ${value.name || "No file selected"}`);
+            } else {
+              lines.push(`${key}:`);
+              lines.push(value || "[No response]");
+            }
+            lines.push("");
+          }
+          lines.push(`Total Score: ${totalScore.textContent}`);
+          lines.push("");
+          lines.push("Note: If an annotated manuscript file was selected, please attach it manually to the email before sending.");
+          return lines.join("\\n");
+        };
+
+        const downloadReport = () => {
+          const report = buildReport();
+          const manuscript = document.querySelector("#manuscript-number").value || "ijles-review";
+          const blob = new Blob([report], { type: "text/plain;charset=utf-8" });
+          const link = document.createElement("a");
+          link.href = URL.createObjectURL(blob);
+          link.download = `${manuscript.replace(/[^a-z0-9-]+/gi, "-").toLowerCase()}-review-report.txt`;
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+          URL.revokeObjectURL(link.href);
+          return report;
+        };
+
+        unlock.addEventListener("click", () => {
+          if (password.value.trim() === accessCode) {
+            unlockForm();
+          } else {
+            message.textContent = "The access code is incorrect. Please check the code sent by the editorial office.";
+          }
+        });
+
+        password.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            unlock.click();
+          }
+        });
+
+        document.addEventListener("change", (event) => {
+          if (event.target.classList.contains("rating-select")) {
+            updateScore();
+          }
+        });
+
+        downloadButton.addEventListener("click", downloadReport);
+
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+          const report = downloadReport();
+          const manuscript = document.querySelector("#manuscript-number").value || "IJLES manuscript";
+          const subject = encodeURIComponent(`Reviewer Evaluation - ${manuscript}`);
+          const body = encodeURIComponent(`Dear IJLES Editorial Office,\\n\\nPlease find my reviewer evaluation report attached.\\n\\nSummary:\\n${report.slice(0, 1200)}\\n\\nIf the full text is truncated in this email draft, please use the downloaded review-report.txt file.\\n\\nRegards,`);
+          window.location.href = `mailto:ijlescontact@gmail.com?subject=${subject}&body=${body}`;
+        });
+
+        if (sessionStorage.getItem("ijlesReviewerAccess") === "true") {
+          unlockForm();
+        }
+      })();
+    </script>
+  </body>
+</html>
