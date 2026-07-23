@@ -1218,7 +1218,7 @@ h3 {
 
 .cover-option-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 18px;
   align-items: start;
 }
@@ -1238,16 +1238,9 @@ h3 {
   box-shadow: 0 14px 30px rgba(16, 32, 51, .12);
 }
 
-.cover-option-card .jacs-date {
-  top: 18px;
-  left: 15px;
-  width: 58px;
-  font-size: 8px;
-}
-
 .cover-option-card .jacs-masthead {
   gap: 6px;
-  padding-left: 56px;
+  padding-left: 0;
   font-size: 32px;
 }
 
@@ -1287,6 +1280,126 @@ h3 {
   color: var(--muted);
   font-size: 13px;
   line-height: 1.45;
+}
+
+.cover-bjet {
+  display: grid;
+  grid-template-rows: 24% 16% 7% minmax(0, 1fr) 12%;
+  min-height: 0;
+  padding: 0;
+  color: #11150f;
+  background: #f6b91e;
+  border-radius: 4px;
+  box-shadow: 0 14px 30px rgba(16, 32, 51, .14);
+}
+
+.bjet-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 18px 20px;
+  background: #f8bb1c;
+}
+
+.bjet-top strong {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.bjet-top span {
+  margin-top: 4px;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+
+.bjet-band {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 20px;
+  color: #fff8df;
+  background: #151510;
+}
+
+.bjet-band strong {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.bjet-band span {
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 248, 223, .55);
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.bjet-meta {
+  align-self: end;
+  width: fit-content;
+  margin-left: 20px;
+  padding: 5px 12px;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 9px;
+  font-weight: 700;
+  background: #fff6d6;
+}
+
+.bjet-field {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .55) 0 1.5px, transparent 1.9px) 0 0 / 14px 14px,
+    linear-gradient(180deg, #f8c22c, #efa50e);
+}
+
+.bjet-field::after {
+  position: absolute;
+  inset: auto -22% -18% auto;
+  width: 58%;
+  aspect-ratio: 1;
+  content: "";
+  opacity: .25;
+  background:
+    radial-gradient(circle at 28% 28%, #151510 0 13%, transparent 13.5%),
+    radial-gradient(circle at 65% 34%, #151510 0 18%, transparent 18.5%),
+    radial-gradient(circle at 42% 72%, #151510 0 21%, transparent 21.5%);
+}
+
+.bjet-field ul {
+  position: relative;
+  z-index: 1;
+  width: 48%;
+  margin: 28px 22px 0 auto;
+  padding: 0;
+  list-style: none;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.bjet-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  background: #f8bb1c;
+}
+
+.bjet-footer strong {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 21px;
+}
+
+.bjet-footer span {
+  font-size: 9px;
+  font-weight: 800;
 }
 
 .art-classroom {
