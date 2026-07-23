@@ -1283,33 +1283,53 @@ h3 {
 }
 
 .cover-bjet {
+  --bjet-dark: #082d45;
+  --bjet-cream: #fff4d2;
   display: grid;
-  grid-template-rows: 24% 16% 7% minmax(0, 1fr) 12%;
+  grid-template-rows: 24% 16% 7% minmax(0, 1fr);
   min-height: 0;
   padding: 0;
   color: #11150f;
   background: #f6b91e;
-  border-radius: 4px;
+  border-radius: 2px;
   box-shadow: 0 14px 30px rgba(16, 32, 51, .14);
+}
+
+.cover-option-card .cover-bjet.cover-preview {
+  padding: 0;
 }
 
 .bjet-top {
   display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 34px 26px 18px;
+  background: #f8bb1c;
+}
+
+.bjet-top img {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  background: var(--bjet-cream);
+  border-radius: 2px;
+}
+
+.bjet-top span {
+  display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 18px 20px;
-  background: #f8bb1c;
 }
 
 .bjet-top strong {
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 26px;
+  font-size: 23px;
   line-height: 1;
 }
 
-.bjet-top span {
-  margin-top: 4px;
-  font-size: 7px;
+.bjet-top small {
+  margin-top: 2px;
+  font-size: 5.5px;
   font-weight: 800;
   letter-spacing: .04em;
   text-transform: uppercase;
@@ -1318,23 +1338,23 @@ h3 {
 .bjet-band {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 12px 20px;
-  color: #fff8df;
-  background: #151510;
+  gap: 12px;
+  padding: 12px 24px;
+  color: var(--bjet-cream);
+  background: var(--bjet-dark);
 }
 
 .bjet-band strong {
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 32px;
+  font-size: 46px;
   line-height: 1;
 }
 
 .bjet-band span {
-  padding-left: 10px;
-  border-left: 1px solid rgba(255, 248, 223, .55);
+  padding-left: 12px;
+  border-left: 1px solid rgba(255, 244, 210, .58);
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 11px;
+  font-size: 13px;
   font-weight: 700;
   line-height: 1.15;
 }
@@ -1342,19 +1362,19 @@ h3 {
 .bjet-meta {
   align-self: end;
   width: fit-content;
-  margin-left: 20px;
-  padding: 5px 12px;
+  margin-left: 24px;
+  padding: 5px 14px;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 9px;
+  font-size: 8.5px;
   font-weight: 700;
-  background: #fff6d6;
+  background: var(--bjet-cream);
 }
 
 .bjet-field {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle, rgba(255, 255, 255, .55) 0 1.5px, transparent 1.9px) 0 0 / 14px 14px,
+    radial-gradient(circle, rgba(255, 255, 255, .62) 0 1.4px, transparent 1.8px) 0 0 / 13px 13px,
     linear-gradient(180deg, #f8c22c, #efa50e);
 }
 
@@ -1364,42 +1384,48 @@ h3 {
   width: 58%;
   aspect-ratio: 1;
   content: "";
-  opacity: .25;
+  opacity: .22;
   background:
-    radial-gradient(circle at 28% 28%, #151510 0 13%, transparent 13.5%),
-    radial-gradient(circle at 65% 34%, #151510 0 18%, transparent 18.5%),
-    radial-gradient(circle at 42% 72%, #151510 0 21%, transparent 21.5%);
+    radial-gradient(circle at 28% 28%, var(--bjet-dark) 0 13%, transparent 13.5%),
+    radial-gradient(circle at 65% 34%, var(--bjet-dark) 0 18%, transparent 18.5%),
+    radial-gradient(circle at 42% 72%, var(--bjet-dark) 0 21%, transparent 21.5%);
 }
 
 .bjet-field ul {
   position: relative;
   z-index: 1;
   width: 48%;
-  margin: 28px 22px 0 auto;
+  margin: 20px 22px 0 auto;
   padding: 0;
   list-style: none;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 8px;
+  font-size: 7px;
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 1.42;
 }
 
 .bjet-footer {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 18px;
+  z-index: 2;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
-  padding: 0 20px;
-  background: #f8bb1c;
 }
 
 .bjet-footer strong {
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 21px;
+  font-size: 23px;
+  line-height: 1;
+  color: var(--bjet-dark);
 }
 
 .bjet-footer span {
   font-size: 9px;
   font-weight: 800;
+  color: var(--bjet-dark);
 }
 
 .art-classroom {
