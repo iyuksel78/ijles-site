@@ -116,7 +116,10 @@ summary:focus-visible {
 
 .brand-logo {
   display: block;
+  object-fit: cover;
+  object-position: center;
   border-radius: 8px;
+  background: #fffaf0;
 }
 
 .brand strong {
@@ -1220,198 +1223,6 @@ h3 {
   font-size: 11px;
 }
 
-.cover-options-header {
-  background:
-    linear-gradient(90deg, rgba(247, 243, 235, .96), rgba(247, 243, 235, .84)),
-    url("assets/ijles-hero.png") right center / auto 100% no-repeat;
-}
-
-.cover-options-page {
-  background: #f8faf9;
-}
-
-.cover-option-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 18px;
-  align-items: start;
-}
-
-.single-cover-display {
-  display: flex;
-  justify-content: center;
-}
-
-.cover-option-card {
-  padding: 16px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--white);
-}
-
-.cover-option-single {
-  width: min(100%, 560px);
-  padding: 24px;
-}
-
-.cover-option-card .cover-preview {
-  width: 100%;
-  max-width: 320px;
-  margin: 0 auto 16px;
-  padding: 14px 15px;
-  box-shadow: 0 14px 30px rgba(16, 32, 51, .12);
-}
-
-.cover-option-card .cover-preview-large {
-  max-width: 390px;
-  margin-bottom: 0;
-}
-
-.cover-option-card .jacs-masthead {
-  gap: 6px;
-  padding-left: 0;
-  font-size: 32px;
-}
-
-.cover-option-card .jacs-masthead i {
-  height: 30px;
-}
-
-.cover-option-card .jacs-title {
-  margin-bottom: 11px;
-  font-size: 9px;
-  line-height: 1.55;
-}
-
-.cover-option-card .jacs-art {
-  height: 58%;
-}
-
-.cover-option-card .jacs-footer {
-  padding-top: 10px;
-}
-
-.cover-option-card .jacs-footer strong {
-  font-size: 15px;
-}
-
-.cover-option-card .jacs-footer span {
-  font-size: 10px;
-}
-
-.cover-option-card h2 {
-  margin: 0 0 8px;
-  font-size: 17px;
-}
-
-.cover-option-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13px;
-  line-height: 1.45;
-}
-
-.cover-bjet {
-  --bjet-dark: #06283d;
-  --bjet-cream: #fff4d2;
-  display: grid;
-  grid-template-rows: 24% 15% minmax(0, 1fr);
-  aspect-ratio: 0.68;
-  min-height: 0;
-  padding: 0;
-  color: #11150f;
-  background: #f6b91e;
-  border-radius: 2px;
-  box-shadow: 0 14px 30px rgba(16, 32, 51, .14);
-}
-
-.cover-option-card .cover-bjet.cover-preview {
-  padding: 0;
-}
-
-.bjet-top {
-  background: #f8bb1c;
-}
-
-.bjet-band {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
-  padding: 0 24px;
-  color: var(--bjet-cream);
-  background: var(--bjet-dark);
-}
-
-.bjet-band strong {
-  flex: 0 0 auto;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 50px;
-  line-height: 1;
-}
-
-.bjet-band span {
-  min-width: 0;
-  padding-left: 15px;
-  border-left: 1px solid rgba(255, 244, 210, .58);
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 13.5px;
-  font-weight: 700;
-  line-height: 1.12;
-}
-
-.bjet-meta {
-  position: absolute;
-  top: 39%;
-  left: 0;
-  z-index: 3;
-  width: fit-content;
-  margin-left: 0;
-  padding: 7px 22px;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 10px;
-  font-weight: 700;
-  background: var(--bjet-cream);
-}
-
-.bjet-field {
-  position: relative;
-  grid-row: 3 / 4;
-  overflow: hidden;
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, .72) 0 1.6px, transparent 2px) 0 0 / 15px 15px,
-    #f8bb1c;
-}
-
-.bjet-field ul {
-  position: relative;
-  z-index: 1;
-  width: 47%;
-  margin: 54px 30px 0 auto;
-  padding: 0;
-  list-style: none;
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 8.5px;
-  font-weight: 700;
-  line-height: 1.36;
-}
-
-.bjet-footer {
-  position: absolute;
-  left: 30px;
-  bottom: 28px;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-}
-
-.bjet-footer strong {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 30px;
-  line-height: 1;
-  color: var(--bjet-dark);
-}
-
 .art-classroom {
   background:
     radial-gradient(circle at 78% 26%, rgba(181, 122, 40, .14), transparent 22%),
@@ -2393,7 +2204,6 @@ details p {
   .issue-layout,
   .issue-page-layout,
   .content-layout,
-  .cover-option-grid,
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2491,7 +2301,6 @@ details p {
   .people-grid,
   .people-grid.expanded,
   .home-grid,
-  .cover-option-grid,
   .info-grid.six,
   .two-column,
   .contact-grid,
