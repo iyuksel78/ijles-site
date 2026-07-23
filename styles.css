@@ -963,9 +963,46 @@ h3 {
 }
 
 .cover-art-image {
+  isolation: isolate;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(11, 45, 69, .08)),
-    url("assets/ijles-cover-art-seminar.png") center / cover no-repeat;
+    radial-gradient(ellipse at 22% 74%, rgba(215, 170, 47, .18) 0 18%, transparent 42%),
+    radial-gradient(ellipse at 76% 24%, rgba(35, 109, 115, .16) 0 20%, transparent 48%),
+    linear-gradient(142deg, transparent 0 25%, rgba(11, 45, 69, .82) 25.4% 26.2%, transparent 26.6%),
+    linear-gradient(142deg, transparent 0 38%, rgba(11, 45, 69, .76) 38.4% 39.2%, transparent 39.6%),
+    linear-gradient(142deg, transparent 0 51%, rgba(11, 45, 69, .68) 51.4% 52.2%, transparent 52.6%),
+    linear-gradient(32deg, transparent 0 32%, rgba(35, 109, 115, .68) 32.35% 33%, transparent 33.35%),
+    linear-gradient(32deg, transparent 0 44%, rgba(35, 109, 115, .48) 44.35% 45%, transparent 45.35%),
+    linear-gradient(-18deg, transparent 0 52%, rgba(216, 170, 47, .82) 52.35% 53.05%, transparent 53.4%),
+    linear-gradient(-18deg, transparent 0 62%, rgba(216, 170, 47, .62) 62.35% 63.05%, transparent 63.4%),
+    linear-gradient(180deg, #f8fbfd 0%, #eff5f7 58%, #f7f2ea 100%);
+}
+
+.cover-art-image::before,
+.cover-art-image::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.cover-art-image::before {
+  inset: 12% 9% 10%;
+  opacity: .72;
+  background:
+    radial-gradient(circle at 21% 70%, rgba(222, 147, 126, .95) 0 7.6%, rgba(11, 45, 69, .88) 7.9% 8.6%, transparent 8.9%),
+    radial-gradient(circle at 72% 32%, rgba(146, 127, 190, .9) 0 8.2%, rgba(11, 45, 69, .82) 8.5% 9.2%, transparent 9.5%),
+    radial-gradient(circle at 58% 76%, rgba(246, 221, 127, .95) 0 5.7%, rgba(11, 45, 69, .7) 6% 6.7%, transparent 7%),
+    radial-gradient(circle at 37% 43%, rgba(255, 255, 255, .7) 0 1.6%, transparent 2%),
+    radial-gradient(circle at 47% 55%, rgba(255, 255, 255, .62) 0 1.2%, transparent 1.6%),
+    radial-gradient(circle at 63% 49%, rgba(255, 255, 255, .56) 0 1.1%, transparent 1.5%);
+}
+
+.cover-art-image::after {
+  inset: 0;
+  opacity: .34;
+  background:
+    repeating-linear-gradient(90deg, rgba(35, 51, 124, .16) 0 1px, transparent 1px 46px),
+    repeating-linear-gradient(0deg, rgba(35, 51, 124, .12) 0 1px, transparent 1px 46px);
+  mask-image: radial-gradient(ellipse at center, #000 0 52%, transparent 74%);
 }
 
 .cover-network,
