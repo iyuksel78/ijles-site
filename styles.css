@@ -962,6 +962,12 @@ h3 {
     linear-gradient(180deg, #f7f9fb 0%, #edf3f4 58%, #f7f3eb 100%);
 }
 
+.cover-art-image {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, .02), rgba(11, 45, 69, .08)),
+    url("assets/ijles-cover-art-seminar.png") center / cover no-repeat;
+}
+
 .cover-network,
 .cover-book,
 .cover-dialogue,
