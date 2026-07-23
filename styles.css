@@ -99,8 +99,8 @@ summary:focus-visible {
 
 .brand-mark,
 .brand-logo {
-  width: 40px;
-  height: 40px;
+  width: 58px;
+  height: 46px;
 }
 
 .brand-mark {
@@ -116,10 +116,10 @@ summary:focus-visible {
 
 .brand-logo {
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: center;
-  border-radius: 8px;
-  background: #fffaf0;
+  border-radius: 0;
+  background: transparent;
 }
 
 .brand strong {
@@ -2131,8 +2131,8 @@ details p {
 }
 
 .footer .footer-identity .brand-logo {
-  width: 42px;
-  height: 42px;
+  width: 72px;
+  height: 52px;
 }
 
 .footer .footer-identity p {
