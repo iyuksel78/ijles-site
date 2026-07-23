@@ -908,9 +908,10 @@ h3 {
   --issue-accent: #d7aa2f;
   aspect-ratio: 4 / 5.15;
   min-height: 0;
-  display: flex;
-  flex-direction: column;
-  padding: 18px 18px 16px;
+  display: grid;
+  grid-template-rows: 58px 44px minmax(0, 1fr) 54px;
+  row-gap: 0;
+  padding: 20px 20px 16px;
   background: #fbfaf7;
   color: var(--navy);
   border: 1px solid rgba(16, 32, 51, .2);
@@ -967,11 +968,11 @@ h3 {
 
 .jacs-date {
   position: absolute;
-  top: 14px;
-  left: 14px;
+  top: 18px;
+  left: 18px;
   z-index: 2;
   width: auto;
-  max-width: 96px;
+  max-width: 112px;
   padding: 7px 9px;
   color: var(--issue-text);
   font-size: 10px;
@@ -986,10 +987,10 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 0 7px;
+  padding: 0;
   color: #23337c;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 40px;
+  font-size: 38px;
   font-weight: 700;
   line-height: .9;
 }
@@ -1001,20 +1002,24 @@ h3 {
 }
 
 .jacs-title {
-  margin: 0 auto 16px;
+  align-self: start;
+  max-width: 92%;
+  margin: 0 auto;
   color: #273245;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 11px;
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
+  line-height: 1.35;
   text-align: center;
   text-transform: uppercase;
 }
 
 .jacs-art {
   position: relative;
-  flex: 1 1 auto;
+  width: 100%;
   min-height: 0;
+  margin-top: 2px;
   overflow: hidden;
   border: 0;
   background: var(--issue-color);
@@ -1184,21 +1189,21 @@ h3 {
 
 .jacs-footer {
   display: flex;
-  flex: 0 0 auto;
   align-items: center;
   justify-content: space-between;
-  padding-top: 14px;
+  min-height: 54px;
+  padding-top: 13px;
   color: #236d73;
   font-weight: 800;
 }
 
 .jacs-footer strong {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .jacs-footer span {
   color: #0b2d45;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .cover-options-header {
