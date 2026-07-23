@@ -1286,7 +1286,7 @@ h3 {
   --bjet-dark: #06283d;
   --bjet-cream: #fff4d2;
   display: grid;
-  grid-template-rows: 24% 16% 7% minmax(0, 1fr);
+  grid-template-rows: 24% 18% 7% minmax(0, 1fr);
   min-height: 0;
   padding: 0;
   color: #11150f;
@@ -1300,63 +1300,34 @@ h3 {
 }
 
 .bjet-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  padding: 34px 26px 18px;
   background: #f8bb1c;
-}
-
-.bjet-top img {
-  flex: 0 0 auto;
-  width: 28px;
-  height: 28px;
-  background: var(--bjet-cream);
-  border-radius: 2px;
-}
-
-.bjet-top span {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.bjet-top strong {
-  font-family: "Source Serif 4", Georgia, serif;
-  font-size: 23px;
-  line-height: 1;
-}
-
-.bjet-top small {
-  margin-top: 2px;
-  font-size: 5.5px;
-  font-weight: 800;
-  letter-spacing: .04em;
-  text-transform: uppercase;
 }
 
 .bjet-band {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 24px;
+  gap: 9px;
+  min-width: 0;
+  padding: 10px 20px;
   color: var(--bjet-cream);
   background: var(--bjet-dark);
 }
 
 .bjet-band strong {
+  flex: 0 0 auto;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 46px;
+  font-size: 35px;
   line-height: 1;
 }
 
 .bjet-band span {
-  padding-left: 12px;
+  min-width: 0;
+  padding-left: 9px;
   border-left: 1px solid rgba(255, 244, 210, .58);
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 13px;
+  font-size: 10px;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
 }
 
 .bjet-meta {
@@ -1365,7 +1336,7 @@ h3 {
   margin-left: 24px;
   padding: 5px 14px;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 8.5px;
+  font-size: 8px;
   font-weight: 700;
   background: var(--bjet-cream);
 }
@@ -1374,7 +1345,6 @@ h3 {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle, rgba(255, 255, 255, .62) 0 1.4px, transparent 1.8px) 0 0 / 13px 13px,
     linear-gradient(180deg, #f8c22c, #efa50e);
 }
 
