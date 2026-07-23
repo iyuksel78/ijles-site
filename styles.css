@@ -1283,7 +1283,7 @@ h3 {
 }
 
 .cover-bjet {
-  --bjet-dark: #082d45;
+  --bjet-dark: #06283d;
   --bjet-cream: #fff4d2;
   display: grid;
   grid-template-rows: 24% 16% 7% minmax(0, 1fr);
