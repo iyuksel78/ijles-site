@@ -921,6 +921,15 @@ h3 {
   --issue-color-dark: #073a54;
   --issue-color-soft: #33a0aa;
   --issue-accent: #d8aa2f;
+  --issue-text: #ffffff;
+}
+
+.issue-amber {
+  --issue-color: #f6b91e;
+  --issue-color-dark: #d99510;
+  --issue-color-soft: #ffd25a;
+  --issue-accent: #073a54;
+  --issue-text: #101823;
 }
 
 .issue-blue {
@@ -928,6 +937,7 @@ h3 {
   --issue-color-dark: #12385f;
   --issue-color-soft: #5aa5c7;
   --issue-accent: #d8aa2f;
+  --issue-text: #ffffff;
 }
 
 .issue-burgundy {
@@ -935,6 +945,23 @@ h3 {
   --issue-color-dark: #65152f;
   --issue-color-soft: #c94b65;
   --issue-accent: #f0c04e;
+  --issue-text: #ffffff;
+}
+
+.issue-red {
+  --issue-color: #e62134;
+  --issue-color-dark: #a81028;
+  --issue-color-soft: #ff5b5e;
+  --issue-accent: #fff2c5;
+  --issue-text: #ffffff;
+}
+
+.issue-deep-blue {
+  --issue-color: #063a70;
+  --issue-color-dark: #022449;
+  --issue-color-soft: #1d6aa0;
+  --issue-accent: #7ed2d0;
+  --issue-text: #ffffff;
 }
 
 .jacs-date {
@@ -945,11 +972,11 @@ h3 {
   z-index: 2;
   width: 74px;
   padding: 8px 10px;
-  color: #fff;
+  color: var(--issue-text);
   font-size: 10px;
   font-weight: 800;
   line-height: 1.35;
-  background: rgba(6, 58, 84, .44);
+  background: color-mix(in srgb, var(--issue-color-dark) 58%, transparent);
   border-left: 4px solid var(--issue-accent);
 }
 
@@ -994,9 +1021,9 @@ h3 {
 .cover-art-image {
   isolation: isolate;
   background:
-    linear-gradient(128deg, rgba(255, 255, 255, .1) 0 14%, transparent 14.3%),
-    radial-gradient(circle at 16% 22%, rgba(255, 255, 255, .13) 0 10%, transparent 10.4%),
-    radial-gradient(circle at 72% 24%, rgba(255, 255, 255, .1) 0 13%, transparent 13.4%),
+    linear-gradient(128deg, rgba(255, 255, 255, .14) 0 14%, transparent 14.3%),
+    radial-gradient(circle at 14% 21%, rgba(255, 255, 255, .14) 0 10%, transparent 10.4%),
+    radial-gradient(circle at 72% 22%, rgba(255, 255, 255, .12) 0 13%, transparent 13.4%),
     linear-gradient(180deg, var(--issue-color-soft), var(--issue-color) 44%, var(--issue-color-dark));
 }
 
@@ -1009,26 +1036,24 @@ h3 {
 
 .cover-art-image::before {
   inset: 0;
-  opacity: .95;
+  opacity: .78;
   background:
-    radial-gradient(circle at 77% 31%, rgba(6, 58, 84, .5) 0 10%, transparent 10.4%),
-    radial-gradient(circle at 65% 52%, rgba(6, 58, 84, .58) 0 12%, transparent 12.4%),
-    radial-gradient(circle at 84% 56%, rgba(255, 255, 255, .12) 0 7%, transparent 7.4%),
-    radial-gradient(circle at 73% 78%, rgba(6, 58, 84, .58) 0 11%, transparent 11.4%),
-    radial-gradient(circle at 55% 75%, rgba(255, 255, 255, .15) 0 8%, transparent 8.4%),
-    radial-gradient(circle at 92% 82%, rgba(216, 170, 47, .42) 0 5.4%, transparent 5.8%),
-    linear-gradient(90deg, transparent 0 54%, rgba(255, 255, 255, .08) 54.2% 54.9%, transparent 55.1%);
+    radial-gradient(circle at 76% 28%, color-mix(in srgb, var(--issue-color-dark) 42%, transparent) 0 9%, transparent 9.4%),
+    radial-gradient(circle at 64% 52%, color-mix(in srgb, var(--issue-color-dark) 50%, transparent) 0 11%, transparent 11.4%),
+    radial-gradient(circle at 84% 55%, rgba(255, 255, 255, .16) 0 6.5%, transparent 6.9%),
+    radial-gradient(circle at 73% 78%, color-mix(in srgb, var(--issue-color-dark) 48%, transparent) 0 10%, transparent 10.4%),
+    radial-gradient(circle at 54% 74%, rgba(255, 255, 255, .16) 0 7%, transparent 7.4%),
+    radial-gradient(circle at 92% 82%, color-mix(in srgb, var(--issue-accent) 58%, transparent) 0 5%, transparent 5.4%);
 }
 
 .cover-art-image::after {
   inset: 0;
-  opacity: .5;
+  opacity: .72;
   background:
-    radial-gradient(circle at 74% 52%, transparent 0 17%, rgba(255, 255, 255, .16) 17.3% 18.4%, transparent 18.7%),
-    radial-gradient(circle at 75% 52%, transparent 0 28%, rgba(255, 255, 255, .12) 28.3% 29.2%, transparent 29.5%),
-    radial-gradient(circle at 76% 52%, transparent 0 39%, rgba(255, 255, 255, .1) 39.2% 40%, transparent 40.3%),
-    linear-gradient(-24deg, transparent 0 39%, rgba(216, 170, 47, .75) 39.4% 40.5%, transparent 40.9%),
-    linear-gradient(-24deg, transparent 0 44%, rgba(255, 255, 255, .5) 44.4% 45.1%, transparent 45.5%);
+    radial-gradient(circle, rgba(255, 255, 255, .48) 0 2px, transparent 2.4px) 0 0 / 18px 18px,
+    linear-gradient(-24deg, transparent 0 42%, color-mix(in srgb, var(--issue-accent) 68%, transparent) 42.4% 43.2%, transparent 43.6%),
+    linear-gradient(-24deg, transparent 0 48%, rgba(255, 255, 255, .48) 48.4% 49%, transparent 49.4%);
+  mask-image: linear-gradient(90deg, transparent 0 28%, #000 45% 100%);
 }
 
 .cover-network,
