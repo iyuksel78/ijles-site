@@ -902,24 +902,55 @@ h3 {
 }
 
 .cover-jacs {
+  --issue-color: #0b6f82;
+  --issue-color-dark: #06445c;
+  --issue-color-soft: #2f98a8;
+  --issue-accent: #d7aa2f;
   aspect-ratio: 4 / 5.15;
   min-height: 0;
-  padding: 18px 20px;
-  background: #fbfaf7;
+  padding: 17px 18px;
+  background:
+    linear-gradient(180deg, #fff 0 25%, var(--issue-color) 25% 84%, #fbfaf7 84% 100%);
   color: var(--navy);
   border: 1px solid rgba(16, 32, 51, .2);
   box-shadow: 0 18px 44px rgba(16, 32, 51, .14);
 }
 
+.issue-teal {
+  --issue-color: #0a7182;
+  --issue-color-dark: #073a54;
+  --issue-color-soft: #33a0aa;
+  --issue-accent: #d8aa2f;
+}
+
+.issue-blue {
+  --issue-color: #1d5f96;
+  --issue-color-dark: #12385f;
+  --issue-color-soft: #5aa5c7;
+  --issue-accent: #d8aa2f;
+}
+
+.issue-burgundy {
+  --issue-color: #9e2042;
+  --issue-color-dark: #65152f;
+  --issue-color-soft: #c94b65;
+  --issue-accent: #f0c04e;
+}
+
 .jacs-date {
   position: absolute;
-  top: 24px;
-  left: 22px;
+  top: auto;
+  left: 18px;
+  bottom: 65px;
+  z-index: 2;
   width: 74px;
-  color: #24384a;
+  padding: 8px 10px;
+  color: #fff;
   font-size: 10px;
   font-weight: 800;
-  line-height: 1.45;
+  line-height: 1.35;
+  background: rgba(6, 58, 84, .44);
+  border-left: 4px solid var(--issue-accent);
 }
 
 .jacs-masthead {
@@ -927,7 +958,7 @@ h3 {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 0 7px 70px;
+  padding: 0 0 7px 60px;
   color: #23337c;
   font-family: "Source Serif 4", Georgia, serif;
   font-size: 40px;
@@ -942,10 +973,10 @@ h3 {
 }
 
 .jacs-title {
-  margin: 0 auto 14px;
+  margin: 0 auto 13px;
   color: #273245;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: .08em;
   text-align: center;
@@ -954,27 +985,19 @@ h3 {
 
 .jacs-art {
   position: relative;
-  height: 60%;
+  height: 61%;
   overflow: hidden;
-  border: 1px solid rgba(35, 51, 124, .34);
-  background:
-    radial-gradient(circle at 72% 25%, rgba(35, 109, 115, .16), transparent 24%),
-    linear-gradient(180deg, #f7f9fb 0%, #edf3f4 58%, #f7f3eb 100%);
+  border: 0;
+  background: var(--issue-color);
 }
 
 .cover-art-image {
   isolation: isolate;
   background:
-    radial-gradient(ellipse at 22% 74%, rgba(215, 170, 47, .18) 0 18%, transparent 42%),
-    radial-gradient(ellipse at 76% 24%, rgba(35, 109, 115, .16) 0 20%, transparent 48%),
-    linear-gradient(142deg, transparent 0 25%, rgba(11, 45, 69, .82) 25.4% 26.2%, transparent 26.6%),
-    linear-gradient(142deg, transparent 0 38%, rgba(11, 45, 69, .76) 38.4% 39.2%, transparent 39.6%),
-    linear-gradient(142deg, transparent 0 51%, rgba(11, 45, 69, .68) 51.4% 52.2%, transparent 52.6%),
-    linear-gradient(32deg, transparent 0 32%, rgba(35, 109, 115, .68) 32.35% 33%, transparent 33.35%),
-    linear-gradient(32deg, transparent 0 44%, rgba(35, 109, 115, .48) 44.35% 45%, transparent 45.35%),
-    linear-gradient(-18deg, transparent 0 52%, rgba(216, 170, 47, .82) 52.35% 53.05%, transparent 53.4%),
-    linear-gradient(-18deg, transparent 0 62%, rgba(216, 170, 47, .62) 62.35% 63.05%, transparent 63.4%),
-    linear-gradient(180deg, #f8fbfd 0%, #eff5f7 58%, #f7f2ea 100%);
+    linear-gradient(128deg, rgba(255, 255, 255, .1) 0 14%, transparent 14.3%),
+    radial-gradient(circle at 16% 22%, rgba(255, 255, 255, .13) 0 10%, transparent 10.4%),
+    radial-gradient(circle at 72% 24%, rgba(255, 255, 255, .1) 0 13%, transparent 13.4%),
+    linear-gradient(180deg, var(--issue-color-soft), var(--issue-color) 44%, var(--issue-color-dark));
 }
 
 .cover-art-image::before,
@@ -985,24 +1008,27 @@ h3 {
 }
 
 .cover-art-image::before {
-  inset: 12% 9% 10%;
-  opacity: .72;
+  inset: 0;
+  opacity: .95;
   background:
-    radial-gradient(circle at 21% 70%, rgba(222, 147, 126, .95) 0 7.6%, rgba(11, 45, 69, .88) 7.9% 8.6%, transparent 8.9%),
-    radial-gradient(circle at 72% 32%, rgba(146, 127, 190, .9) 0 8.2%, rgba(11, 45, 69, .82) 8.5% 9.2%, transparent 9.5%),
-    radial-gradient(circle at 58% 76%, rgba(246, 221, 127, .95) 0 5.7%, rgba(11, 45, 69, .7) 6% 6.7%, transparent 7%),
-    radial-gradient(circle at 37% 43%, rgba(255, 255, 255, .7) 0 1.6%, transparent 2%),
-    radial-gradient(circle at 47% 55%, rgba(255, 255, 255, .62) 0 1.2%, transparent 1.6%),
-    radial-gradient(circle at 63% 49%, rgba(255, 255, 255, .56) 0 1.1%, transparent 1.5%);
+    radial-gradient(circle at 77% 31%, rgba(6, 58, 84, .5) 0 10%, transparent 10.4%),
+    radial-gradient(circle at 65% 52%, rgba(6, 58, 84, .58) 0 12%, transparent 12.4%),
+    radial-gradient(circle at 84% 56%, rgba(255, 255, 255, .12) 0 7%, transparent 7.4%),
+    radial-gradient(circle at 73% 78%, rgba(6, 58, 84, .58) 0 11%, transparent 11.4%),
+    radial-gradient(circle at 55% 75%, rgba(255, 255, 255, .15) 0 8%, transparent 8.4%),
+    radial-gradient(circle at 92% 82%, rgba(216, 170, 47, .42) 0 5.4%, transparent 5.8%),
+    linear-gradient(90deg, transparent 0 54%, rgba(255, 255, 255, .08) 54.2% 54.9%, transparent 55.1%);
 }
 
 .cover-art-image::after {
   inset: 0;
-  opacity: .34;
+  opacity: .5;
   background:
-    repeating-linear-gradient(90deg, rgba(35, 51, 124, .16) 0 1px, transparent 1px 46px),
-    repeating-linear-gradient(0deg, rgba(35, 51, 124, .12) 0 1px, transparent 1px 46px);
-  mask-image: radial-gradient(ellipse at center, #000 0 52%, transparent 74%);
+    radial-gradient(circle at 74% 52%, transparent 0 17%, rgba(255, 255, 255, .16) 17.3% 18.4%, transparent 18.7%),
+    radial-gradient(circle at 75% 52%, transparent 0 28%, rgba(255, 255, 255, .12) 28.3% 29.2%, transparent 29.5%),
+    radial-gradient(circle at 76% 52%, transparent 0 39%, rgba(255, 255, 255, .1) 39.2% 40%, transparent 40.3%),
+    linear-gradient(-24deg, transparent 0 39%, rgba(216, 170, 47, .75) 39.4% 40.5%, transparent 40.9%),
+    linear-gradient(-24deg, transparent 0 44%, rgba(255, 255, 255, .5) 44.4% 45.1%, transparent 45.5%);
 }
 
 .cover-network,
