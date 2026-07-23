@@ -1249,7 +1249,7 @@ h3 {
 }
 
 .cover-option-card .cover-preview-large {
-  max-width: 420px;
+  max-width: 390px;
   margin-bottom: 0;
 }
 
@@ -1301,7 +1301,8 @@ h3 {
   --bjet-dark: #06283d;
   --bjet-cream: #fff4d2;
   display: grid;
-  grid-template-rows: 24% 18% 7% minmax(0, 1fr);
+  grid-template-rows: 24% 15% minmax(0, 1fr);
+  aspect-ratio: 0.68;
   min-height: 0;
   padding: 0;
   color: #11150f;
@@ -1321,9 +1322,9 @@ h3 {
 .bjet-band {
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 14px;
   min-width: 0;
-  padding: 10px 20px;
+  padding: 0 24px;
   color: var(--bjet-cream);
   background: var(--bjet-dark);
 }
@@ -1331,71 +1332,69 @@ h3 {
 .bjet-band strong {
   flex: 0 0 auto;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 35px;
+  font-size: 50px;
   line-height: 1;
 }
 
 .bjet-band span {
   min-width: 0;
-  padding-left: 9px;
+  padding-left: 15px;
   border-left: 1px solid rgba(255, 244, 210, .58);
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 10px;
+  font-size: 13.5px;
   font-weight: 700;
   line-height: 1.12;
 }
 
 .bjet-meta {
-  align-self: end;
+  position: absolute;
+  top: 39%;
+  left: 0;
+  z-index: 3;
   width: fit-content;
-  margin-left: 24px;
-  padding: 5px 14px;
+  margin-left: 0;
+  padding: 7px 22px;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   background: var(--bjet-cream);
 }
 
 .bjet-field {
   position: relative;
+  grid-row: 3 / 4;
   overflow: hidden;
-  background: #f8bb1c;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, .72) 0 1.6px, transparent 2px) 0 0 / 15px 15px,
+    #f8bb1c;
 }
 
 .bjet-field ul {
   position: relative;
   z-index: 1;
-  width: 48%;
-  margin: 20px 22px 0 auto;
+  width: 47%;
+  margin: 54px 30px 0 auto;
   padding: 0;
   list-style: none;
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 7px;
+  font-size: 8.5px;
   font-weight: 700;
-  line-height: 1.42;
+  line-height: 1.36;
 }
 
 .bjet-footer {
   position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 18px;
+  left: 30px;
+  bottom: 28px;
   z-index: 2;
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
 }
 
 .bjet-footer strong {
   font-family: "Source Serif 4", Georgia, serif;
-  font-size: 23px;
+  font-size: 30px;
   line-height: 1;
-  color: var(--bjet-dark);
-}
-
-.bjet-footer span {
-  font-size: 9px;
-  font-weight: 800;
   color: var(--bjet-dark);
 }
 
